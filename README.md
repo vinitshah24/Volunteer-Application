@@ -2,16 +2,16 @@
 
 ### Instructions for running the App
 
- Install requirements for the project:
+ Install requirements for the project:<br />
  pip install -r requirements.txt
  
- Execute the below command in MySQL:
+ Execute the below command in MySQL:<br />
  CREATE DATABASE volunteer_db;
  
- Run the following commands to create required tables:
- python db_manager.py init
- python db_manager.py migrate
+ Run the following commands to create required tables:<br />
+ python db_manager.py init<br />
+ python db_manager.py migrate<br />
  python db_manager.py upgrade
  
- Run the application:
+ Run the application:<br />
  python run.py
