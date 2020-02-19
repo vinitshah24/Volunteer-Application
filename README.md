@@ -9,9 +9,7 @@
  CREATE DATABASE volunteer_db;
  
  Run the following commands to create required tables:<br />
- python db_manager.py init<br />
- python db_manager.py migrate<br />
- python db_manager.py upgrade
+ python db_manager.py
  
  Run the application:<br />
  python run.py
