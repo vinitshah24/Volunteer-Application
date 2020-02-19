@@ -6,7 +6,6 @@ from flask import request, jsonify, Blueprint, make_response
 from flask_restful import Api, Resource
 from flask_jwt_extended import (
     jwt_required,
-    jwt_optional,
     get_jwt_identity,
     jwt_refresh_token_required,
     fresh_jwt_required,
@@ -23,40 +22,93 @@ mod = Blueprint('users', __name__)
 api = Api(mod)
 
 
+class UserList(Resource):
+    @jwt_required  # Will require accesss token
+    def get(self):
+        """Get the list of users"""
+        public_id = get_jwt_identity()
+        try:
+            if public_id:
+                conn = mysql.connect()
+                cursor = conn.cursor(pymysql.cursors.DictCursor)
+                cursor.execute(queries.SELECT_BY_PUBLIC_ID, public_id)
+                row = cursor.fetchone()
+                cursor.close()
+                conn.close()
+                is_admin = row['is_admin']
+                if is_admin:
+                    conn = mysql.connect()
+                    cursor = conn.cursor(pymysql.cursors.DictCursor)
+                    cursor.execute(queries.SELECT_ALL)
+                    users = cursor.fetchall()
+                    cursor.close()
+                    conn.close()
+                    output = []
+                    for user in users:
+                        user_data = {}
+                        user_data['public_id'] = user['public_id']
+                        user_data['first_name'] = user['first_name']
+                        user_data['last_name'] = user['last_name']
+                        user_data['email'] = user['email']
+                        user_data['username'] = user['username']
+                        user_data['admin'] = user['is_admin']
+                        output.append(user_data)
+                    return jsonify({'users': output})
+            else:
+                return make_response(jsonify({'message': 'Required fields not found!'}), 401)
+        except Exception as e:
+            print(e)
+            return make_response(jsonify({'message': 'Database Exception!'}), 401)
+
+        return make_response(jsonify({'message': 'Unauthorized request!'}), 401)
+
+
 class UserActions(Resource):
     def post(self):
         """ Create a new user """
         data = request.get_json()
-        public_id = str(uuid.uuid4()),
-        first_name = data['first_name'],
-        last_name = data['last_name'],
-        email = data['email'],
-        username = data['username'],
-        password = data['password'],
-        is_admin = False
+        if len(data) == 5:
+            public_id = str(uuid.uuid4()),
+            first_name = data['first_name'],
+            last_name = data['last_name'],
+            email = data['email'],
+            username = data['username'],
+            password = data['password'],
+            is_admin = False
+        else:
+            return make_response(jsonify({'message': 'Required fields count not matched!'}), 401)
         try:
-            if first_name and last_name and email and username and password:
-                data = (public_id, first_name, last_name,
-                        email, username, password, is_admin,)
+            if public_id and first_name and last_name and email and username and password:
                 conn = mysql.connect()
                 cursor = conn.cursor()
-                cursor.execute(queries.INSERT_TABLE, data)
+                existing_user = cursor.execute(
+                    queries.SELECT_BY_USERNAME, username)
+                existing_email = cursor.execute(queries.SELECT_BY_EMAIL, email)
                 conn.commit()
-                return make_response(jsonify({'message': 'User created successfully!'}), 200)
+                cursor.close()
+                conn.close()
+                if existing_user == 1:
+                    return make_response(jsonify({'message': 'User already exists!'}), 401)
+                if existing_email == 1:
+                    return make_response(jsonify({'message': 'Email already exists!'}), 401)
+                if existing_user == 0 and existing_email == 0:
+                    data = (public_id, first_name, last_name,
+                            email, username, password, is_admin,)
+                    conn = mysql.connect()
+                    cursor = conn.cursor()
+                    cursor.execute(queries.INSERT_TABLE, data)
+                    conn.commit()
+                    return make_response(jsonify({'message': 'User created successfully!'}), 200)
             else:
                 return make_response(jsonify({'message': 'Required fields not found!'}), 401)
         except Exception as e:
-            conn.rollback()
+            print(e)
             return make_response(jsonify({'message': 'Database Exception!'}), 401)
-        finally:
-            cursor.close()
-            conn.close()
 
     @jwt_required  # Will require accesss token
     def get(self):
         """ Get user details """
         public_id = get_jwt_identity()
-        #public_id = 'd5127a37-45c8-4174-8d5f-ebcd913cf0b9'
         try:
             if public_id:
                 conn = mysql.connect()
@@ -83,7 +135,6 @@ class UserActions(Resource):
     def put(self):
         """ Escalate user privileges to admin """
         public_id = get_jwt_identity()
-        #public_id = 'd5127a37-45c8-4174-8d5f-ebcd913cf0b9'
         try:
             if public_id:
                 conn = mysql.connect()
@@ -104,7 +155,6 @@ class UserActions(Resource):
     def delete(self):
         """ Remove a user """
         public_id = get_jwt_identity()
-        #public_id = 'd5127a37-45c8-4174-8d5f-ebcd913cf0b9'
         try:
             if public_id:
                 conn = mysql.connect()
@@ -122,15 +172,76 @@ class UserActions(Resource):
             conn.close()
 
 
+class UpdatePassword(Resource):
+    @fresh_jwt_required  # Will require a fresh token
+    def post(self):
+        """ Update Password """
+        data = request.get_json()
+        if(len(data) == 1):
+            password = data['password']
+            public_id = get_jwt_identity()
+        else:
+            return make_response(jsonify({'message': 'Required fields count not matched!'}), 401)
+        try:
+            if password and public_id:
+                data = (password, public_id,)
+                conn = mysql.connect()
+                cursor = conn.cursor()
+                cursor.execute(queries.UPDATE_PASSWORD, data)
+                conn.commit()
+                return make_response(jsonify({'message': 'Password updated successfully!'}), 200)
+            else:
+                return make_response(jsonify({'message': 'Required fields not found!'}), 401)
+        except Exception as e:
+            conn.rollback()
+            return make_response(jsonify({'message': 'Database Exception!'}), 401)
+        finally:
+            cursor.close()
+            conn.close()
+
+
+class UpdateName(Resource):
+    @jwt_required  # Will require accesss token
+    def post(self):
+        """ Update First Name, Last Name """
+        data = request.get_json()
+        if len(data) == 2:
+            first_name = data['first_name'],
+            last_name = data['last_name']
+            public_id = get_jwt_identity()
+        else:
+            return make_response(jsonify({'message': 'Required fields count not matched!'}), 401)
+        try:
+            if first_name and last_name and public_id:
+                data = (first_name, last_name, public_id,)
+                conn = mysql.connect()
+                cursor = conn.cursor()
+                cursor.execute(queries.UPDATE_NAME, data)
+                conn.commit()
+                return make_response(jsonify({'message': 'Name updated successfully!'}), 200)
+            else:
+                return make_response(jsonify({'message': 'Required fields not found!'}), 401)
+        except Exception as e:
+            conn.rollback()
+            return make_response(jsonify({'message': 'Database Exception!'}), 401)
+        finally:
+            cursor.close()
+            conn.close()
+
+
 class UpdateEmail(Resource):
     @jwt_required  # Will require accesss token
-    def put(self, email):
+    def put(self):
         """ Change Email """
-        public_id = get_jwt_identity()
-        #public_id = 'd5127a37-45c8-4174-8d5f-ebcd913cf0b9'
+        data = request.get_json()
+        if len(data) == 1:
+            email = data['email']
+            public_id = get_jwt_identity()
+        else:
+            return make_response(jsonify({'message': 'Required fields count not matched!'}), 401)
         try:
-            if public_id and email:
-                data = (public_id, email,)
+            if email and public_id:
+                data = (email, public_id,)
                 conn = mysql.connect()
                 cursor = conn.cursor()
                 cursor.execute(queries.UPDATE_EMAIL, data)
@@ -150,24 +261,30 @@ class UserLogin(Resource):
     def post(self):
         """ User Login """
         json_data = request.get_json()
-        input_user = json_data['username']
-        input_password = json_data['password']
+        if len(json_data) == 2:
+            input_user = json_data['username']
+            input_password = json_data['password']
+        else:
+            return make_response(jsonify({'message': 'Required fields count not matched!'}), 401)
         try:
-            conn = mysql.connect()
-            cursor = conn.cursor(pymysql.cursors.DictCursor)
-            data = (input_user, input_password,)
-            cur = cursor.execute(queries.SELECT_BY_USERNAME_PASS, data)
-            result = cursor.fetchone()
-            if safe_str_cmp(result['username'], input_user) and safe_str_cmp(result['password'], input_password):
-                access_token = create_access_token(
-                    identity=result['public_id'], fresh=True)
-                refresh_token = create_refresh_token(result['public_id'])
-                return make_response(jsonify({
-                    'access token': access_token,
-                    'refresh token': refresh_token
-                }), 200)
+            if input_user and input_password:
+                conn = mysql.connect()
+                cursor = conn.cursor(pymysql.cursors.DictCursor)
+                data = (input_user, input_password,)
+                cur = cursor.execute(queries.SELECT_BY_USERNAME_PASS, data)
+                result = cursor.fetchone()
+                if safe_str_cmp(result['username'], input_user) and safe_str_cmp(result['password'], input_password):
+                    access_token = create_access_token(
+                        identity=result['public_id'], fresh=True)
+                    refresh_token = create_refresh_token(result['public_id'])
+                    return make_response(jsonify({
+                        'access token': access_token,
+                        'refresh token': refresh_token
+                    }), 200)
+                else:
+                    return make_response(jsonify({'message': 'Invalid Credentials!'}), 401)
             else:
-                return make_response(jsonify({'message': 'Invalid Credentials!'}), 401)
+                return make_response(jsonify({'message': 'Required fields not found!'}), 401)
         except Exception as e:
             return make_response(jsonify({'message': 'Database Exception!'}), 401)
         finally:
@@ -207,9 +324,21 @@ class TokenRefresh(Resource):
 # For future, add old access token to be added to blacklist so no once can use it anymore
 
 
+# Get all users
+api.add_resource(UserList, '/users')
+# Create, get, promote, delete user
 api.add_resource(UserActions, '/user')
-api.add_resource(UpdateEmail, '/user/<email>')
+# Update email
+api.add_resource(UpdateEmail, '/user/email')
+# Update first & last name
+api.add_resource(UpdateName, '/user/name')
+# Update password
+api.add_resource(UpdatePassword, '/user/password')
+# User login to get access & refresh token
 api.add_resource(UserLogin, '/login')
+# Logout to kill access token
 api.add_resource(UserLogoutAccessToken, '/logout/access_token')
+# Logout to kill refresh token
 api.add_resource(UserLogoutRefreshToken, '/logout/refresh_token')
+# Refresh expired token to a new access token
 api.add_resource(TokenRefresh, '/refresh')

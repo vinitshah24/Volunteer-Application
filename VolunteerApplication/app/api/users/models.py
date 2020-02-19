@@ -21,22 +21,40 @@ public_id, first_name, last_name, email, username, password, is_admin)
 VALUES(%s, %s, %s, %s, %s, %s, %s)
 """.format(database=MYSQL_DATABASE_DB, table=TABLE_NAME).replace('\n', ' ')
 
-SELECT_BY_USERNAME_PASS = """SELECT * FROM {database}.{table}
+SELECT_ALL = """SELECT * FROM {database}.{table}
+""".format(database=MYSQL_DATABASE_DB, table=TABLE_NAME).replace('\n', ' ')
+
+SELECT_BY_USERNAME_PASS = """SELECT * FROM {database}.{table} 
 WHERE username = %s AND password = %s
 """.format(database=MYSQL_DATABASE_DB, table=TABLE_NAME).replace('\n', ' ')
 
-SELECT_BY_PUBLIC_ID = """SELECT * FROM {database}.{table}
+SELECT_BY_PUBLIC_ID = """SELECT * FROM {database}.{table} 
 WHERE public_id = %s
+""".format(database=MYSQL_DATABASE_DB, table=TABLE_NAME).replace('\n', ' ')
+
+UPDATE_NAME = """UPDATE {database}.{table}
+SET first_name = %s, last_name = %s WHERE public_id = %s
 """.format(database=MYSQL_DATABASE_DB, table=TABLE_NAME).replace('\n', ' ')
 
 UPDATE_EMAIL = """UPDATE {database}.{table}
 SET email = %s WHERE public_id = %s
 """.format(database=MYSQL_DATABASE_DB, table=TABLE_NAME).replace('\n', ' ')
 
-UPDATE_ADMIN_STATUS = """UPDATE {database}.{table}
-SET is_admin = %s
+UPDATE_PASSWORD = """UPDATE {database}.{table}
+SET password = %s WHERE public_id = %s
 """.format(database=MYSQL_DATABASE_DB, table=TABLE_NAME).replace('\n', ' ')
 
-DELETE_BY_PUBLIC_ID = """DELETE FROM {database}.{table}
+UPDATE_ADMIN_STATUS = """UPDATE {database}.{table} SET is_admin = %s
+""".format(database=MYSQL_DATABASE_DB, table=TABLE_NAME).replace('\n', ' ')
+
+DELETE_BY_PUBLIC_ID = """DELETE FROM {database}.{table} 
 WHERE public_id = %s
+""".format(database=MYSQL_DATABASE_DB, table=TABLE_NAME).replace('\n', ' ')
+
+SELECT_BY_USERNAME = """SELECT * FROM {database}.{table} 
+WHERE username = %s LIMIT 1
+""".format(database=MYSQL_DATABASE_DB, table=TABLE_NAME).replace('\n', ' ')
+
+SELECT_BY_EMAIL = """SELECT * FROM {database}.{table} 
+WHERE email = %s LIMIT 1
 """.format(database=MYSQL_DATABASE_DB, table=TABLE_NAME).replace('\n', ' ')
