@@ -1,3 +1,0 @@
-virtualenv app                      #Create virtualenv
-source Scripts/activate             #Source scripts to activate virtualenv
-pip freeze > requirements.txt       #Lists all the modules required for the project
