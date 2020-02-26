@@ -14,6 +14,7 @@ from flask_jwt_extended import (
     create_refresh_token,
 )
 from werkzeug.security import safe_str_cmp
+from werkzeug.security import generate_password_hash, check_password_hash
 from api.database import mysql
 import api.users.models as queries
 from blacklist import BLACKLIST
@@ -73,7 +74,7 @@ class UserActions(Resource):
             last_name = data['last_name'],
             email = data['email'],
             username = data['username'],
-            password = data['password'],
+            password = generate_password_hash(data['password']),
             is_admin = False
         else:
             return make_response(jsonify({'message': 'Required fields count not matched!'}), 401)
@@ -178,7 +179,7 @@ class UpdatePassword(Resource):
         """ Update Password """
         data = request.get_json()
         if(len(data) == 1):
-            password = data['password']
+            password = generate_password_hash(data['password'])
             public_id = get_jwt_identity()
         else:
             return make_response(jsonify({'message': 'Required fields count not matched!'}), 401)
@@ -264,16 +265,16 @@ class UserLogin(Resource):
         if len(json_data) == 2:
             input_user = json_data['username']
             input_password = json_data['password']
+            print(input_password)
         else:
             return make_response(jsonify({'message': 'Required fields count not matched!'}), 401)
         try:
             if input_user and input_password:
                 conn = mysql.connect()
                 cursor = conn.cursor(pymysql.cursors.DictCursor)
-                data = (input_user, input_password,)
-                cur = cursor.execute(queries.SELECT_BY_USERNAME_PASS, data)
+                cur = cursor.execute(queries.SELECT_BY_USERNAME, input_user)
                 result = cursor.fetchone()
-                if safe_str_cmp(result['username'], input_user) and safe_str_cmp(result['password'], input_password):
+                if safe_str_cmp(result['username'], input_user) and check_password_hash(result['password'], input_password):
                     access_token = create_access_token(
                         identity=result['public_id'], fresh=True)
                     refresh_token = create_refresh_token(result['public_id'])

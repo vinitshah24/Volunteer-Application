@@ -11,7 +11,7 @@ first_name VARCHAR(80) NOT NULL,
 last_name VARCHAR(80) NOT NULL,
 email VARCHAR(80) NOT NULL,
 username VARCHAR(80) NOT NULL,
-password VARCHAR(80) NOT NULL,
+password VARCHAR(150) NOT NULL,
 is_admin BOOLEAN
 )
 """.format(database=MYSQL_DATABASE_DB, table=TABLE_NAME).replace('\n', ' ')
@@ -24,8 +24,8 @@ VALUES(%s, %s, %s, %s, %s, %s, %s)
 SELECT_ALL = """SELECT * FROM {database}.{table}
 """.format(database=MYSQL_DATABASE_DB, table=TABLE_NAME).replace('\n', ' ')
 
-SELECT_BY_USERNAME_PASS = """SELECT * FROM {database}.{table} 
-WHERE username = %s AND password = %s
+SELECT_BY_USERNAME = """SELECT * FROM {database}.{table} 
+WHERE username = %s
 """.format(database=MYSQL_DATABASE_DB, table=TABLE_NAME).replace('\n', ' ')
 
 SELECT_BY_PUBLIC_ID = """SELECT * FROM {database}.{table} 
