@@ -19,51 +19,37 @@ export default {
       const map = new google.maps.Map(this.$el);
 
       const heatmapData = [
-        new google.maps.LatLng(37.782, -122.447),
-        new google.maps.LatLng(37.782, -122.445),
-        new google.maps.LatLng(37.782, -122.443),
-        new google.maps.LatLng(37.782, -122.441),
-        new google.maps.LatLng(37.782, -122.439),
-        new google.maps.LatLng(37.782, -122.437),
-        new google.maps.LatLng(37.782, -122.435),
-        new google.maps.LatLng(37.785, -122.447),
-        new google.maps.LatLng(37.785, -122.445),
-        new google.maps.LatLng(37.785, -122.443),
-        new google.maps.LatLng(37.785, -122.441),
-        new google.maps.LatLng(37.785, -122.439),
-        new google.maps.LatLng(37.785, -122.437),
-        new google.maps.LatLng(37.785, -122.435),
-        
-        new google.maps.LatLng(37.788, -122.447),
-        new google.maps.LatLng(37.788, -122.445),
-        new google.maps.LatLng(37.788, -122.443),
-        new google.maps.LatLng(37.788, -122.441),
-        new google.maps.LatLng(37.788, -122.439),
-        new google.maps.LatLng(37.788, -122.437),
-        new google.maps.LatLng(37.788, -122.435),
-        new google.maps.LatLng(37.791, -122.447),
-        new google.maps.LatLng(37.791, -122.445),
-        new google.maps.LatLng(37.791, -122.443),
-        new google.maps.LatLng(37.791, -122.441),
-        new google.maps.LatLng(37.791, -122.439),
-        new google.maps.LatLng(37.791, -122.437),
-        new google.maps.LatLng(37.791, -122.435),
-
-        new google.maps.LatLng(37.688, -122.447),
-        new google.maps.LatLng(37.688, -122.445),
-        new google.maps.LatLng(37.688, -122.443),
-        new google.maps.LatLng(37.688, -122.441),
-        new google.maps.LatLng(37.688, -122.439),
-        new google.maps.LatLng(37.688, -122.437),
-        new google.maps.LatLng(37.688, -122.435),
-        new google.maps.LatLng(37.691, -122.447),
-        new google.maps.LatLng(37.691, -122.445),
-        new google.maps.LatLng(37.691, -122.443),
-        new google.maps.LatLng(37.691, -122.441),
-        new google.maps.LatLng(37.691, -122.439),
-        new google.maps.LatLng(37.691, -122.437),
-        new google.maps.LatLng(37.691, -122.435)
-
+        new google.maps.LatLng(35.302, -80.897),
+        new google.maps.LatLng(35.251, -80.857),
+        new google.maps.LatLng(35.254, -80.857),
+        new google.maps.LatLng(35.244, -80.857),
+        new google.maps.LatLng(35.252, -80.857),
+        new google.maps.LatLng(35.355, -80.897),
+        new google.maps.LatLng(35.299, -80.857),
+        new google.maps.LatLng(35.276, -80.857),
+        new google.maps.LatLng(35.283, -80.857),
+        new google.maps.LatLng(35.258, -80.857),
+        new google.maps.LatLng(35.252, -80.857),
+        new google.maps.LatLng(35.355, -80.897),
+        new google.maps.LatLng(35.299, -80.857),
+        new google.maps.LatLng(35.276, -80.857),
+        new google.maps.LatLng(35.283, -80.857),
+        new google.maps.LatLng(35.258, -80.857),
+        new google.maps.LatLng(35.252, -80.857),
+        new google.maps.LatLng(35.355, -80.897),
+        new google.maps.LatLng(35.299, -80.857),
+        new google.maps.LatLng(35.276, -80.857),
+        new google.maps.LatLng(35.283, -80.857),
+        new google.maps.LatLng(35.258, -80.857),
+        new google.maps.LatLng(35.252, -80.857),
+        new google.maps.LatLng(35.355, -80.897),
+        new google.maps.LatLng(35.299, -80.857),
+        new google.maps.LatLng(35.276, -80.857),
+        new google.maps.LatLng(35.283, -80.857),
+        new google.maps.LatLng(35.258, -80.857),
+        new google.maps.LatLng(35.233, -80.857),
+        new google.maps.LatLng(35.333, -80.857),
+        new google.maps.LatLng(35.258, -80.857),
       ];
       var heatmap = new google.maps.visualization.HeatmapLayer({
         data: heatmapData
@@ -74,7 +60,7 @@ export default {
       var location;
 
       geocoder.geocode(
-        { address: "San Francisco, California" },
+        { address: "Charlotte, North Carolina" },
         (results, status) => {
           if (status !== "OK" || !results[0]) {
             throw new Error(status);
