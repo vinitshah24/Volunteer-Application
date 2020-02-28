@@ -8,7 +8,22 @@
             <gmap />
           </div>
         </b-col>
-        <b-col></b-col>
+        <b-col>
+          <b-card
+            title="Volunteer Events"
+            tag="article"
+            style="max-width: 20rem;"
+            class="mb-2"
+          >
+            <b-list-group flush>
+              <b-list-group-item><a href="#">Food Bank</a></b-list-group-item>
+              <b-list-group-item>Habitat for Humanity</b-list-group-item>
+              <b-list-group-item>Crisis Assitance Ministry</b-list-group-item>
+            </b-list-group>
+
+            <b-card-text></b-card-text>
+          </b-card>
+        </b-col>
       </b-row>
     </b-container>
   </div>
@@ -24,11 +39,12 @@
 // @ is an alias to /src
 // import Card from "@/components/Card.vue";
 import GMap from "@/components/Map.vue";
+// import Card from "@/components/Card.vue";
 
 export default {
   name: "Home",
   components: {
-    // card: Card
+    // card: Card,
     gmap: GMap
   }
   // async mounted() {

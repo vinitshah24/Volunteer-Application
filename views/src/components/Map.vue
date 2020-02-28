@@ -55,13 +55,21 @@ export default {
         data: heatmapData
       });
 
+      var eventString = "<div><h4>Habitat For Humanity Event</h4>" + 
+      "<p>Come help hang drywall in our new homebuild</p></div>"
+
       var eventsMarkers = 
         new google.maps.Marker({
-          position: new google.maps.LatLng(35.255045, -80.853747),
+          position: new google.maps.LatLng(35.264266, -80.852661),
           title: "Test",
         });
-
+      var infoWindow = new google.maps.InfoWindow({
+        content: eventString
+      })
       eventsMarkers.setMap(map)
+      eventsMarkers.addListener('click', function() {
+        infoWindow.open(map, eventsMarkers)
+      })
       heatmap.setMap(map);
 
       var location;
