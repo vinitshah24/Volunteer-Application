@@ -55,6 +55,13 @@ export default {
         data: heatmapData
       });
 
+      var eventsMarkers = 
+        new google.maps.Marker({
+          position: new google.maps.LatLng(35.255045, -80.853747),
+          title: "Test",
+        });
+
+      eventsMarkers.setMap(map)
       heatmap.setMap(map);
 
       var location;
