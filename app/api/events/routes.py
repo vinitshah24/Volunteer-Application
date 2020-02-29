@@ -21,7 +21,7 @@ api = Api(events_blueprint)
 
 
 class EventsList(Resource):
-    """EventsList"""
+    """Events List"""
     @jwt_required  # Will require accesss token
     def get(self):
         """Get the list of events"""
@@ -40,7 +40,6 @@ class EventsList(Resource):
                     cursor = conn.cursor(pymysql.cursors.DictCursor)
                     cursor.execute(event_queries.SELECT_EVENTS)
                     rows = cursor.fetchall()
-                    print(rows)
                     cursor.close()
                     conn.close()
                     events_list = []
@@ -72,7 +71,7 @@ class EventsList(Resource):
 
 
 class EventActions(Resource):
-    """EventActions"""
+    """Event Actions"""
     @jwt_required  # Will require accesss token
     def post(self):
         """ Create a new event """
@@ -185,5 +184,5 @@ class EventActions(Resource):
 
 # Get all events
 api.add_resource(EventsList, '/events')
-# Insert, Delete an event
+# Insert, Delete, Update an event
 api.add_resource(EventActions, '/event')

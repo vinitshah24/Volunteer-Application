@@ -5,7 +5,6 @@ import pymysql
 from flask import request, jsonify, Blueprint, make_response
 from flask_restful import Api, Resource
 from flask_jwt_extended import (
-    get_jti,
     jwt_required,
     get_jwt_identity,
     jwt_refresh_token_required,
@@ -179,7 +178,7 @@ class UpdatePassword(Resource):
     def post(self):
         """ Update Password """
         data = request.get_json()
-        if(len(data) == 1):
+        if len(data) == 1:
             password = generate_password_hash(data['password'])
             public_id = get_jwt_identity()
         else:
@@ -274,7 +273,8 @@ class UserLogin(Resource):
                 cursor = conn.cursor(pymysql.cursors.DictCursor)
                 cur = cursor.execute(queries.SELECT_BY_USERNAME, input_user)
                 result = cursor.fetchone()
-                if safe_str_cmp(result['username'], input_user) and check_password_hash(result['password'], input_password):
+                if safe_str_cmp(result['username'], input_user) \
+                    and check_password_hash(result['password'], input_password):
                     access_token = create_access_token(
                         identity=result['public_id'], fresh=True)
                     refresh_token = create_refresh_token(result['public_id'])
@@ -300,7 +300,9 @@ class UserLogoutAccessToken(Resource):
         # JWT ID will be blacklisted once user logout
         jti = get_raw_jwt()['jti']
         BLACKLIST.add(jti)
-        return make_response(jsonify({'message': 'Logged out (Access token revoked) successfully!'}), 200)
+        return make_response(
+            jsonify({'message': 'Logged out (Access token revoked) successfully!'}), 200
+            )
 
 
 class UserLogoutRefreshToken(Resource):
@@ -308,7 +310,9 @@ class UserLogoutRefreshToken(Resource):
     def get(self):
         jti = get_raw_jwt()['jti']
         BLACKLIST.add(jti)
-        return make_response(jsonify({'message': 'Logged out (Refresh token revoked) successfully!'}), 200)
+        return make_response(
+            jsonify({'message': 'Logged out (Refresh token revoked) successfully!'}), 200
+            )
 
 
 class TokenRefresh(Resource):
