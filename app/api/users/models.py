@@ -24,11 +24,11 @@ VALUES(%s, %s, %s, %s, %s, %s, %s)
 SELECT_ALL = """SELECT * FROM {database}.{table}
 """.format(database=MYSQL_DATABASE_DB, table=TABLE_NAME).replace('\n', ' ')
 
-SELECT_BY_USERNAME = """SELECT * FROM {database}.{table} 
+SELECT_BY_USERNAME = """SELECT * FROM {database}.{table}
 WHERE username = %s
 """.format(database=MYSQL_DATABASE_DB, table=TABLE_NAME).replace('\n', ' ')
 
-SELECT_BY_PUBLIC_ID = """SELECT * FROM {database}.{table} 
+SELECT_BY_PUBLIC_ID = """SELECT * FROM {database}.{table}
 WHERE public_id = %s
 """.format(database=MYSQL_DATABASE_DB, table=TABLE_NAME).replace('\n', ' ')
 
@@ -47,14 +47,17 @@ SET password = %s WHERE public_id = %s
 UPDATE_ADMIN_STATUS = """UPDATE {database}.{table} SET is_admin = %s
 """.format(database=MYSQL_DATABASE_DB, table=TABLE_NAME).replace('\n', ' ')
 
-DELETE_BY_PUBLIC_ID = """DELETE FROM {database}.{table} 
+DELETE_BY_PUBLIC_ID = """DELETE FROM {database}.{table}
 WHERE public_id = %s
 """.format(database=MYSQL_DATABASE_DB, table=TABLE_NAME).replace('\n', ' ')
 
-SELECT_BY_USERNAME = """SELECT * FROM {database}.{table} 
+SELECT_BY_USERNAME = """SELECT * FROM {database}.{table}
 WHERE username = %s LIMIT 1
 """.format(database=MYSQL_DATABASE_DB, table=TABLE_NAME).replace('\n', ' ')
 
-SELECT_BY_EMAIL = """SELECT * FROM {database}.{table} 
+SELECT_BY_EMAIL = """SELECT * FROM {database}.{table}
 WHERE email = %s LIMIT 1
+""".format(database=MYSQL_DATABASE_DB, table=TABLE_NAME).replace('\n', ' ')
+
+GET_USERID = """SELECT id FROM {database}.{table} WHERE public_id = %s
 """.format(database=MYSQL_DATABASE_DB, table=TABLE_NAME).replace('\n', ' ')

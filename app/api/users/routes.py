@@ -5,6 +5,7 @@ import pymysql
 from flask import request, jsonify, Blueprint, make_response
 from flask_restful import Api, Resource
 from flask_jwt_extended import (
+    get_jti,
     jwt_required,
     get_jwt_identity,
     jwt_refresh_token_required,
@@ -19,8 +20,8 @@ from api.database import mysql
 import api.users.models as queries
 from blacklist import BLACKLIST
 
-mod = Blueprint('users', __name__)
-api = Api(mod)
+users_blueprint = Blueprint('users', __name__)
+api = Api(users_blueprint)
 
 
 class UserList(Resource):
@@ -265,7 +266,6 @@ class UserLogin(Resource):
         if len(json_data) == 2:
             input_user = json_data['username']
             input_password = json_data['password']
-            print(input_password)
         else:
             return make_response(jsonify({'message': 'Required fields count not matched!'}), 401)
         try:
@@ -323,7 +323,6 @@ class TokenRefresh(Resource):
 # Currently if a user refreshes the token but the access token is still valid then
 # he can use both tokens and only newly created access token will be destroyed on logout
 # For future, add old access token to be added to blacklist so no once can use it anymore
-
 
 # Get all users
 api.add_resource(UserList, '/users')
