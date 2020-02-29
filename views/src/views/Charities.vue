@@ -16,7 +16,7 @@
           >
             <b-card-text >{{charity.mission.toString()}}</b-card-text>
 
-            <b-button :href="charity.charityNavigatorURL" variant="primary">Go somewhere</b-button>
+            <b-button :href="charity.charityNavigatorURL" variant="primary">Donate!</b-button>
           </b-card>
         </b-col>
       </b-row>

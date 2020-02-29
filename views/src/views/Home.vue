@@ -9,16 +9,49 @@
           </div>
         </b-col>
         <b-col>
-          <b-card
-            title="Volunteer Events"
-            tag="article"
-            style="max-width: 20rem;"
-            class="mb-2"
-          >
+          <b-card title="Volunteer Events" tag="article" style="max-width: 20rem;" class="mb-2">
             <b-list-group flush>
-              <b-list-group-item><a href="#">Food Bank</a></b-list-group-item>
-              <b-list-group-item>Habitat for Humanity</b-list-group-item>
-              <b-list-group-item>Crisis Assitance Ministry</b-list-group-item>
+              <b-list-group-item>
+                <b-dropdown
+                  id="dropdown-dropup"
+                  dropup
+                  text="Food Bank"
+                  variant="outline-secondary"
+                  class="m-2"
+                >
+                  <b-dropdown-item href="#">Join Event</b-dropdown-item>
+                  <b-dropdown-item href="#">Invite Friends</b-dropdown-item>
+                </b-dropdown>
+              </b-list-group-item>
+              <b-list-group-item>
+                <b-dropdown
+                  id="dropdown-dropup"
+                  dropup
+                  text="Habitat for Humanity"
+                  variant="outline-secondary"
+                  class="m-2"
+                >
+                  <b-dropdown-item href="#">Join Event</b-dropdown-item>
+                  <b-dropdown-item href="#">Invite Friends</b-dropdown-item>
+                </b-dropdown>
+              </b-list-group-item>
+              <b-list-group-item>
+                <b-dropdown
+                  id="dropdown-dropup"
+                  dropup
+                  text="Crisis Assitance Ministry"
+                  variant="outline-secondary"
+                  class="m-2"
+                >
+                  <b-dropdown-item href="#">Join Event</b-dropdown-item>
+                  <b-dropdown-item href="#">Invite Friends</b-dropdown-item>
+                </b-dropdown>
+              </b-list-group-item>
+              <b-list-group-item>
+                <b-button variant="success">
+                  Create Event
+                </b-button>
+              </b-list-group-item>
             </b-list-group>
 
             <b-card-text></b-card-text>

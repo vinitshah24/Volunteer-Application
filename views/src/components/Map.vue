@@ -50,6 +50,38 @@ export default {
         new google.maps.LatLng(35.233, -80.857),
         new google.maps.LatLng(35.333, -80.857),
         new google.maps.LatLng(35.258, -80.857),
+        
+        new google.maps.LatLng(35.311, -80.897),
+        new google.maps.LatLng(35.486, -80.857),
+        new google.maps.LatLng(35.487, -80.857),
+        new google.maps.LatLng(35.2654, -80.857),
+        new google.maps.LatLng(35.3565, -80.857),
+        new google.maps.LatLng(35.298, -80.897),
+        new google.maps.LatLng(35.299, -80.857),
+        new google.maps.LatLng(35.299, -80.856),
+        new google.maps.LatLng(35.283, -80.857),
+        new google.maps.LatLng(35.258, -80.857),
+        new google.maps.LatLng(35.252, -80.857),
+        new google.maps.LatLng(35.355, -80.897),
+        new google.maps.LatLng(35.299, -80.857),
+        new google.maps.LatLng(35.276, -80.857),
+        new google.maps.LatLng(35.283, -80.857),
+        new google.maps.LatLng(35.258, -80.857),
+        new google.maps.LatLng(35.252, -80.857),
+        new google.maps.LatLng(35.355, -80.897),
+        new google.maps.LatLng(35.299, -80.857),
+        new google.maps.LatLng(35.276, -80.857),
+        new google.maps.LatLng(35.283, -80.857),
+        new google.maps.LatLng(35.258, -80.857),
+        new google.maps.LatLng(35.252, -80.857),
+        new google.maps.LatLng(35.355, -80.897),
+        new google.maps.LatLng(35.299, -80.857),
+        new google.maps.LatLng(35.276, -80.857),
+        new google.maps.LatLng(35.283, -80.857),
+        new google.maps.LatLng(35.258, -80.857),
+        new google.maps.LatLng(35.233, -80.857),
+        new google.maps.LatLng(35.333, -80.857),
+        new google.maps.LatLng(35.258, -80.857),
       ];
       var heatmap = new google.maps.visualization.HeatmapLayer({
         data: heatmapData
@@ -60,7 +92,7 @@ export default {
 
       var eventsMarkers = 
         new google.maps.Marker({
-          position: new google.maps.LatLng(35.264266, -80.852661),
+          position: new google.maps.LatLng(35.255146, -80.822402),
           title: "Test",
         });
       var infoWindow = new google.maps.InfoWindow({
