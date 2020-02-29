@@ -1,8 +1,8 @@
 """ Routes for events """
 
 import uuid
-from datetime import datetime
 import pymysql
+from datetime import datetime
 from dateutil.parser import *
 from flask import request, jsonify, Blueprint, make_response
 from flask_restful import Api, Resource
@@ -18,6 +18,7 @@ import api.events.models as event_queries
 
 events_blueprint = Blueprint('events', __name__)
 api = Api(events_blueprint)
+
 
 class EventsList(Resource):
     """EventsList"""
@@ -75,7 +76,7 @@ class EventActions(Resource):
     @jwt_required  # Will require accesss token
     def post(self):
         """ Create a new event """
-        jwt_id = get_jwt_identity()
+        user_public_id = get_jwt_identity()
         data = request.get_json()
         if len(data) != 8:
             return make_response(jsonify({'message': 'Required fields count not matched!'}), 401)
@@ -89,7 +90,6 @@ class EventActions(Resource):
             state = data['state']
             date = data['date']
             time = data['time']
-            user_public_id = jwt_id
             try:
                 # check if the row already exists in DB
                 if public_id and name and category and details and address and \
@@ -114,7 +114,6 @@ class EventActions(Resource):
                 return make_response(jsonify({'message': 'Database Exception!'}), 401)
         return make_response(jsonify({'message': 'Unauthorized request!'}), 401)
 
-
     @fresh_jwt_required  # Will require a fresh token
     def delete(self):
         """Remove an event"""
@@ -126,15 +125,57 @@ class EventActions(Resource):
                 input_data = (events_public_id, user_public_id,)
                 conn = mysql.connect()
                 cursor = conn.cursor()
-                return_code = cursor.execute(event_queries.DELETE_EVENT, input_data)
+                return_code = cursor.execute(
+                    event_queries.DELETE_EVENT, input_data)
                 conn.commit()
                 if return_code == 1:
                     return make_response(jsonify({'message': 'Event deleted successfully'}), 200)
                 else:
-                     return make_response(jsonify({'message': 'Event deletion failed'}), 200)
+                    return make_response(jsonify({'message': 'Event deletion failed'}), 200)
             else:
                 return make_response(jsonify({'message': 'Required fields not found!'}), 401)
         except Exception as e:
+            print(e)
+            conn.rollback()
+            return make_response(jsonify({'message': 'Database Exception!'}), 401)
+        finally:
+            cursor.close()
+            conn.close()
+
+    @jwt_required  # Will require accesss token
+    def put(self):
+        """ Update Event"""
+        user_public_id = get_jwt_identity()
+        data = request.get_json()
+        if len(data) == 9:
+            public_id = data['public_id']
+            name = data['name']
+            category = data['category']
+            details = data['details']
+            address = data['address']
+            county = data['county']
+            state = data['state']
+            date = data['date']
+            time = data['time']
+        else:
+            return make_response(jsonify({'message': 'Required fields count not matched!'}), 401)
+        try:
+            if user_public_id and public_id and name and category and details \
+                    and address and county and state and date and time:
+                data = (name, category, details, address, county,
+                        state, date, time, public_id, user_public_id,)
+                conn = mysql.connect()
+                cursor = conn.cursor()
+                query_result = cursor.execute(event_queries.UPDATE_EVENT, data)
+                conn.commit()
+                if query_result == 1:
+                    return make_response(jsonify({'message': 'Event updated successfully!'}), 200)
+                else:
+                    return make_response(jsonify({'message': 'Event updation failed!'}), 401)
+            else:
+                return make_response(jsonify({'message': 'Required fields not found!'}), 401)
+        except Exception as e:
+            print(e)
             conn.rollback()
             return make_response(jsonify({'message': 'Database Exception!'}), 401)
         finally:

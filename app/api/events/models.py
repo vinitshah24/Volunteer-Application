@@ -37,5 +37,11 @@ VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
 """.format(database=MYSQL_DATABASE_DB, events_table=TABLE_NAME).replace('\n', ' ')
 
 DELETE_EVENT = """DELETE FROM {database}.{events_table}
-WHERE {events_table}.public_id = %s and {events_table}.user_public_id = %s
+WHERE public_id = %s AND user_public_id = %s
+""".format(database=MYSQL_DATABASE_DB, events_table=TABLE_NAME).replace('\n', ' ')
+
+UPDATE_EVENT = """UPDATE {database}.{events_table}
+SET name = %s, category = %s, details = %s, address = %s,
+county = %s, state = %s, date = %s, time = %s
+WHERE public_id = %s AND user_public_id = %s
 """.format(database=MYSQL_DATABASE_DB, events_table=TABLE_NAME).replace('\n', ' ')
