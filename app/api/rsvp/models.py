@@ -7,7 +7,6 @@ from api.events.models import TABLE_NAME as EVENTS_TABLE
 TABLE_NAME = "rsvp"
 
 CREATE_TABLE = """CREATE TABLE IF NOT EXISTS {database}.{table} (
-CREATE TABLE IF NOT EXISTS volunteer_db.rsvp (
 id INT AUTO_INCREMENT PRIMARY KEY,
 user_public_id VARCHAR(60) NOT NULL,
 event_public_id VARCHAR(60) NOT NULL UNIQUE,

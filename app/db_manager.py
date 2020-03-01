@@ -2,7 +2,9 @@
 
 import pymysql
 import config
-from api.users.models import CREATE_TABLE
+import api.users.models as users
+import api.events.models as events
+import api.rsvp.models as rsvp
 
 connection = pymysql.connect(
     host=config.MYSQL_DATABASE_HOST,
@@ -13,17 +15,30 @@ connection = pymysql.connect(
     cursorclass=pymysql.cursors.DictCursor
 )
 
-DROP_DB = "DROP DATABASE IF EXISTS {}".format(config.MYSQL_DATABASE_DB)
-CREATE_DB = "CREATE DATABASE IF NOT EXISTS {}".format(config.MYSQL_DATABASE_DB)
+DROP_DB = """DROP DATABASE IF EXISTS `{}`
+""".format(config.MYSQL_DATABASE_DB).replace('\n', ' ')
+CREATE_DB = """CREATE DATABASE IF NOT EXISTS `{}`
+""".format(config.MYSQL_DATABASE_DB).replace('\n', ' ')
+DROP_USERS_TABLE = """DROP TABLE IF EXISTS `{}`.`{}`
+""".format(config.MYSQL_DATABASE_DB, users.TABLE_NAME).replace('\n', ' ')
+DROP_EVENTS_TABLE = """DROP TABLE IF EXISTS `{}`.`{}`
+""".format(config.MYSQL_DATABASE_DB, events.TABLE_NAME).replace('\n', ' ')
+DROP_RSVP_TABLE = """DROP TABLE IF EXISTS `{}`.`{}`
+""".format(config.MYSQL_DATABASE_DB, rsvp.TABLE_NAME).replace('\n', ' ')
 
 try:
     with connection.cursor() as cursor:
         cursor.execute(DROP_DB)
         cursor.execute(CREATE_DB)
-        cursor.execute(CREATE_TABLE)
+        cursor.execute(DROP_RSVP_TABLE)
+        cursor.execute(DROP_EVENTS_TABLE)
+        cursor.execute(DROP_USERS_TABLE)
+        cursor.execute(users.CREATE_TABLE)
+        cursor.execute(events.CREATE_TABLE)
+        cursor.execute(rsvp.CREATE_TABLE)
         connection.commit()
-        print("Success!")
-except pymysql.MySQLError as e:
-    print(e)
+        print("MySQL setup was successful!")
+except pymysql.MySQLError as mysql_error:
+    print(mysql_error)
 finally:
     cursor.close()
