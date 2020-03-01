@@ -5,6 +5,7 @@ import os
 
 
 def fetchDataFromStLouisFed(api_key, api_url, series_id):
+    """Fetch API data"""
     metadata = {
         'api_key': api_key,
         'series_id': series_id,
@@ -18,6 +19,7 @@ def fetchDataFromStLouisFed(api_key, api_url, series_id):
 
 
 def filterByState(json_object, state):
+    """Filter JSON by State"""
     if json_object and state:
         data_list = json_object['meta']['data']['2018']
         json_data = []
@@ -30,7 +32,8 @@ def filterByState(json_object, state):
 
 
 def getJsonDataByNC():
-    api_key = 'adeeb2c76d8bb84bbc115f84d23399d4'
+    """Get JSON data from NC State"""
+    api_key = os.getenv('GEOFRED_API_KEY')
     series_id = 'S1701ACS037179'
     api_url = 'https://api.stlouisfed.org/geofred/series/data'
     state = 'NC'
@@ -45,6 +48,3 @@ def getJsonDataByNC():
     dict[state] = nc_data
     with open('nc_data_test.json', 'w', encoding='utf-8') as json_file:
         json.dump(dict, json_file, ensure_ascii=False, indent=2)
-
-
-getJsonDataByNC()
