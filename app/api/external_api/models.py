@@ -1,7 +1,7 @@
-import sys
+import os
+from flask import jsonify
 import requests
 import json
-import os
 
 
 def fetchDataFromStLouisFed(api_key, api_url, series_id):
@@ -38,13 +38,13 @@ def getJsonDataByNC():
     api_url = 'https://api.stlouisfed.org/geofred/series/data'
     state = 'NC'
     json_output = fetchDataFromStLouisFed(api_key, api_url, series_id)
-    print(json_output)
     nc_data = filterByState(json_output, state)
-    print(nc_data)
-    dict = {}
-    dict['title'] = json_output['meta']['title']
-    dict['units'] = json_output['meta']['units']
-    dict['frequency'] = json_output['meta']['frequency']
-    dict[state] = nc_data
-    with open('nc_data_test.json', 'w', encoding='utf-8') as json_file:
-        json.dump(dict, json_file, ensure_ascii=False, indent=2)
+    nc_dict = {}
+    nc_dict['title'] = json_output['meta']['title']
+    nc_dict['units'] = json_output['meta']['units']
+    nc_dict['frequency'] = json_output['meta']['frequency']
+    nc_dict[state] = nc_data
+    json_dir = os.path.join(os.path.dirname(__file__), 'data')
+    file_path = os.path.join(json_dir, 'nc_data.json')
+    with open(file_path, 'w+', encoding='utf-8') as json_file:
+        json.dump(nc_dict, json_file, ensure_ascii=False, indent=2)

@@ -1,0 +1,607 @@
+{
+  "title": "Percent of Population Below the Poverty Level by County (Percent)",
+  "units": "Percent",
+  "frequency": "Annual",
+  "NC": [
+    {
+      "region": "Alamance County, NC",
+      "code": "37001",
+      "value": "16.8",
+      "series_id": "S1701ACS037001"
+    },
+    {
+      "region": "Alexander County, NC",
+      "code": "37003",
+      "value": "14.9",
+      "series_id": "S1701ACS037003"
+    },
+    {
+      "region": "Alleghany County, NC",
+      "code": "37005",
+      "value": "24.6",
+      "series_id": "S1701ACS037005"
+    },
+    {
+      "region": "Anson County, NC",
+      "code": "37007",
+      "value": "19.8",
+      "series_id": "S1701ACS037007"
+    },
+    {
+      "region": "Ashe County, NC",
+      "code": "37009",
+      "value": "18.0",
+      "series_id": "S1701ACS037009"
+    },
+    {
+      "region": "Avery County, NC",
+      "code": "37011",
+      "value": "14.4",
+      "series_id": "S1701ACS037011"
+    },
+    {
+      "region": "Beaufort County, NC",
+      "code": "37013",
+      "value": "19.2",
+      "series_id": "S1701ACS037013"
+    },
+    {
+      "region": "Bertie County, NC",
+      "code": "37015",
+      "value": "23.0",
+      "series_id": "S1701ACS037015"
+    },
+    {
+      "region": "Bladen County, NC",
+      "code": "37017",
+      "value": "26.0",
+      "series_id": "S1701ACS037017"
+    },
+    {
+      "region": "Brunswick County, NC",
+      "code": "37019",
+      "value": "12.9",
+      "series_id": "S1701ACS037019"
+    },
+    {
+      "region": "Buncombe County, NC",
+      "code": "37021",
+      "value": "12.3",
+      "series_id": "S1701ACS037021"
+    },
+    {
+      "region": "Burke County, NC",
+      "code": "37023",
+      "value": "18.1",
+      "series_id": "S1701ACS037023"
+    },
+    {
+      "region": "Cabarrus County, NC",
+      "code": "37025",
+      "value": "10.9",
+      "series_id": "S1701ACS037025"
+    },
+    {
+      "region": "Caldwell County, NC",
+      "code": "37027",
+      "value": "16.6",
+      "series_id": "S1701ACS037027"
+    },
+    {
+      "region": "Camden County, NC",
+      "code": "37029",
+      "value": "11.2",
+      "series_id": "S1701ACS037029"
+    },
+    {
+      "region": "Carteret County, NC",
+      "code": "37031",
+      "value": "11.6",
+      "series_id": "S1701ACS037031"
+    },
+    {
+      "region": "Caswell County, NC",
+      "code": "37033",
+      "value": "19.6",
+      "series_id": "S1701ACS037033"
+    },
+    {
+      "region": "Catawba County, NC",
+      "code": "37035",
+      "value": "13.2",
+      "series_id": "S1701ACS037035"
+    },
+    {
+      "region": "Chatham County, NC",
+      "code": "37037",
+      "value": "11.9",
+      "series_id": "S1701ACS037037"
+    },
+    {
+      "region": "Cherokee County, NC",
+      "code": "37039",
+      "value": "16.5",
+      "series_id": "S1701ACS037039"
+    },
+    {
+      "region": "Chowan County, NC",
+      "code": "37041",
+      "value": "19.6",
+      "series_id": "S1701ACS037041"
+    },
+    {
+      "region": "Clay County, NC",
+      "code": "37043",
+      "value": "15.8",
+      "series_id": "S1701ACS037043"
+    },
+    {
+      "region": "Cleveland County, NC",
+      "code": "37045",
+      "value": "20.2",
+      "series_id": "S1701ACS037045"
+    },
+    {
+      "region": "Columbus County, NC",
+      "code": "37047",
+      "value": "23.8",
+      "series_id": "S1701ACS037047"
+    },
+    {
+      "region": "Craven County, NC",
+      "code": "37049",
+      "value": "15.3",
+      "series_id": "S1701ACS037049"
+    },
+    {
+      "region": "Cumberland County, NC",
+      "code": "37051",
+      "value": "18.2",
+      "series_id": "S1701ACS037051"
+    },
+    {
+      "region": "Currituck County, NC",
+      "code": "37053",
+      "value": "10.0",
+      "series_id": "S1701ACS037053"
+    },
+    {
+      "region": "Dare County, NC",
+      "code": "37055",
+      "value": "8.2",
+      "series_id": "S1701ACS037055"
+    },
+    {
+      "region": "Davidson County, NC",
+      "code": "37057",
+      "value": "15.5",
+      "series_id": "S1701ACS037057"
+    },
+    {
+      "region": "Davie County, NC",
+      "code": "37059",
+      "value": "13.7",
+      "series_id": "S1701ACS037059"
+    },
+    {
+      "region": "Duplin County, NC",
+      "code": "37061",
+      "value": "24.1",
+      "series_id": "S1701ACS037061"
+    },
+    {
+      "region": "Durham County, NC",
+      "code": "37063",
+      "value": "16.0",
+      "series_id": "S1701ACS037063"
+    },
+    {
+      "region": "Edgecombe County, NC",
+      "code": "37065",
+      "value": "23.6",
+      "series_id": "S1701ACS037065"
+    },
+    {
+      "region": "Forsyth County, NC",
+      "code": "37067",
+      "value": "17.6",
+      "series_id": "S1701ACS037067"
+    },
+    {
+      "region": "Franklin County, NC",
+      "code": "37069",
+      "value": "14.4",
+      "series_id": "S1701ACS037069"
+    },
+    {
+      "region": "Gaston County, NC",
+      "code": "37071",
+      "value": "15.6",
+      "series_id": "S1701ACS037071"
+    },
+    {
+      "region": "Gates County, NC",
+      "code": "37073",
+      "value": "11.1",
+      "series_id": "S1701ACS037073"
+    },
+    {
+      "region": "Graham County, NC",
+      "code": "37075",
+      "value": "18.1",
+      "series_id": "S1701ACS037075"
+    },
+    {
+      "region": "Granville County, NC",
+      "code": "37077",
+      "value": "13.9",
+      "series_id": "S1701ACS037077"
+    },
+    {
+      "region": "Greene County, NC",
+      "code": "37079",
+      "value": "25.7",
+      "series_id": "S1701ACS037079"
+    },
+    {
+      "region": "Guilford County, NC",
+      "code": "37081",
+      "value": "15.9",
+      "series_id": "S1701ACS037081"
+    },
+    {
+      "region": "Halifax County, NC",
+      "code": "37083",
+      "value": "25.2",
+      "series_id": "S1701ACS037083"
+    },
+    {
+      "region": "Harnett County, NC",
+      "code": "37085",
+      "value": "17.0",
+      "series_id": "S1701ACS037085"
+    },
+    {
+      "region": "Haywood County, NC",
+      "code": "37087",
+      "value": "13.9",
+      "series_id": "S1701ACS037087"
+    },
+    {
+      "region": "Henderson County, NC",
+      "code": "37089",
+      "value": "10.6",
+      "series_id": "S1701ACS037089"
+    },
+    {
+      "region": "Hertford County, NC",
+      "code": "37091",
+      "value": "23.4",
+      "series_id": "S1701ACS037091"
+    },
+    {
+      "region": "Hoke County, NC",
+      "code": "37093",
+      "value": "21.0",
+      "series_id": "S1701ACS037093"
+    },
+    {
+      "region": "Hyde County, NC",
+      "code": "37095",
+      "value": "22.3",
+      "series_id": "S1701ACS037095"
+    },
+    {
+      "region": "Iredell County, NC",
+      "code": "37097",
+      "value": "11.8",
+      "series_id": "S1701ACS037097"
+    },
+    {
+      "region": "Jackson County, NC",
+      "code": "37099",
+      "value": "19.4",
+      "series_id": "S1701ACS037099"
+    },
+    {
+      "region": "Johnston County, NC",
+      "code": "37101",
+      "value": "13.3",
+      "series_id": "S1701ACS037101"
+    },
+    {
+      "region": "Jones County, NC",
+      "code": "37103",
+      "value": "26.2",
+      "series_id": "S1701ACS037103"
+    },
+    {
+      "region": "Lee County, NC",
+      "code": "37105",
+      "value": "16.1",
+      "series_id": "S1701ACS037105"
+    },
+    {
+      "region": "Lenoir County, NC",
+      "code": "37107",
+      "value": "23.0",
+      "series_id": "S1701ACS037107"
+    },
+    {
+      "region": "Lincoln County, NC",
+      "code": "37109",
+      "value": "14.4",
+      "series_id": "S1701ACS037109"
+    },
+    {
+      "region": "McDowell County, NC",
+      "code": "37111",
+      "value": "17.1",
+      "series_id": "S1701ACS037111"
+    },
+    {
+      "region": "Macon County, NC",
+      "code": "37113",
+      "value": "16.6",
+      "series_id": "S1701ACS037113"
+    },
+    {
+      "region": "Madison County, NC",
+      "code": "37115",
+      "value": "17.6",
+      "series_id": "S1701ACS037115"
+    },
+    {
+      "region": "Martin County, NC",
+      "code": "37117",
+      "value": "18.2",
+      "series_id": "S1701ACS037117"
+    },
+    {
+      "region": "Mecklenburg County, NC",
+      "code": "37119",
+      "value": "12.7",
+      "series_id": "S1701ACS037119"
+    },
+    {
+      "region": "Mitchell County, NC",
+      "code": "37121",
+      "value": "14.0",
+      "series_id": "S1701ACS037121"
+    },
+    {
+      "region": "Montgomery County, NC",
+      "code": "37123",
+      "value": "19.7",
+      "series_id": "S1701ACS037123"
+    },
+    {
+      "region": "Moore County, NC",
+      "code": "37125",
+      "value": "12.6",
+      "series_id": "S1701ACS037125"
+    },
+    {
+      "region": "Nash County, NC",
+      "code": "37127",
+      "value": "15.5",
+      "series_id": "S1701ACS037127"
+    },
+    {
+      "region": "New Hanover County, NC",
+      "code": "37129",
+      "value": "17.3",
+      "series_id": "S1701ACS037129"
+    },
+    {
+      "region": "Northampton County, NC",
+      "code": "37131",
+      "value": "21.9",
+      "series_id": "S1701ACS037131"
+    },
+    {
+      "region": "Onslow County, NC",
+      "code": "37133",
+      "value": "13.8",
+      "series_id": "S1701ACS037133"
+    },
+    {
+      "region": "Orange County, NC",
+      "code": "37135",
+      "value": "13.4",
+      "series_id": "S1701ACS037135"
+    },
+    {
+      "region": "Pamlico County, NC",
+      "code": "37137",
+      "value": "14.1",
+      "series_id": "S1701ACS037137"
+    },
+    {
+      "region": "Pasquotank County, NC",
+      "code": "37139",
+      "value": "16.1",
+      "series_id": "S1701ACS037139"
+    },
+    {
+      "region": "Pender County, NC",
+      "code": "37141",
+      "value": "15.1",
+      "series_id": "S1701ACS037141"
+    },
+    {
+      "region": "Perquimans County, NC",
+      "code": "37143",
+      "value": "15.5",
+      "series_id": "S1701ACS037143"
+    },
+    {
+      "region": "Person County, NC",
+      "code": "37145",
+      "value": "17.7",
+      "series_id": "S1701ACS037145"
+    },
+    {
+      "region": "Pitt County, NC",
+      "code": "37147",
+      "value": "23.9",
+      "series_id": "S1701ACS037147"
+    },
+    {
+      "region": "Polk County, NC",
+      "code": "37149",
+      "value": "9.5",
+      "series_id": "S1701ACS037149"
+    },
+    {
+      "region": "Randolph County, NC",
+      "code": "37151",
+      "value": "15.8",
+      "series_id": "S1701ACS037151"
+    },
+    {
+      "region": "Richmond County, NC",
+      "code": "37153",
+      "value": "24.1",
+      "series_id": "S1701ACS037153"
+    },
+    {
+      "region": "Robeson County, NC",
+      "code": "37155",
+      "value": "28.1",
+      "series_id": "S1701ACS037155"
+    },
+    {
+      "region": "Rockingham County, NC",
+      "code": "37157",
+      "value": "18.0",
+      "series_id": "S1701ACS037157"
+    },
+    {
+      "region": "Rowan County, NC",
+      "code": "37159",
+      "value": "16.5",
+      "series_id": "S1701ACS037159"
+    },
+    {
+      "region": "Rutherford County, NC",
+      "code": "37161",
+      "value": "18.0",
+      "series_id": "S1701ACS037161"
+    },
+    {
+      "region": "Sampson County, NC",
+      "code": "37163",
+      "value": "24.1",
+      "series_id": "S1701ACS037163"
+    },
+    {
+      "region": "Scotland County, NC",
+      "code": "37165",
+      "value": "27.7",
+      "series_id": "S1701ACS037165"
+    },
+    {
+      "region": "Stanly County, NC",
+      "code": "37167",
+      "value": "14.3",
+      "series_id": "S1701ACS037167"
+    },
+    {
+      "region": "Stokes County, NC",
+      "code": "37169",
+      "value": "13.6",
+      "series_id": "S1701ACS037169"
+    },
+    {
+      "region": "Surry County, NC",
+      "code": "37171",
+      "value": "16.9",
+      "series_id": "S1701ACS037171"
+    },
+    {
+      "region": "Swain County, NC",
+      "code": "37173",
+      "value": "17.3",
+      "series_id": "S1701ACS037173"
+    },
+    {
+      "region": "Transylvania County, NC",
+      "code": "37175",
+      "value": "14.7",
+      "series_id": "S1701ACS037175"
+    },
+    {
+      "region": "Tyrrell County, NC",
+      "code": "37177",
+      "value": "25.2",
+      "series_id": "S1701ACS037177"
+    },
+    {
+      "region": "Union County, NC",
+      "code": "37179",
+      "value": "8.9",
+      "series_id": "S1701ACS037179"
+    },
+    {
+      "region": "Vance County, NC",
+      "code": "37181",
+      "value": "23.9",
+      "series_id": "S1701ACS037181"
+    },
+    {
+      "region": "Wake County, NC",
+      "code": "37183",
+      "value": "9.8",
+      "series_id": "S1701ACS037183"
+    },
+    {
+      "region": "Warren County, NC",
+      "code": "37185",
+      "value": "19.2",
+      "series_id": "S1701ACS037185"
+    },
+    {
+      "region": "Washington County, NC",
+      "code": "37187",
+      "value": "23.5",
+      "series_id": "S1701ACS037187"
+    },
+    {
+      "region": "Watauga County, NC",
+      "code": "37189",
+      "value": "27.2",
+      "series_id": "S1701ACS037189"
+    },
+    {
+      "region": "Wayne County, NC",
+      "code": "37191",
+      "value": "21.4",
+      "series_id": "S1701ACS037191"
+    },
+    {
+      "region": "Wilkes County, NC",
+      "code": "37193",
+      "value": "19.9",
+      "series_id": "S1701ACS037193"
+    },
+    {
+      "region": "Wilson County, NC",
+      "code": "37195",
+      "value": "21.5",
+      "series_id": "S1701ACS037195"
+    },
+    {
+      "region": "Yadkin County, NC",
+      "code": "37197",
+      "value": "15.3",
+      "series_id": "S1701ACS037197"
+    },
+    {
+      "region": "Yancey County, NC",
+      "code": "37199",
+      "value": "19.2",
+      "series_id": "S1701ACS037199"
+    }
+  ]
+}
