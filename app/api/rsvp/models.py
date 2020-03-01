@@ -35,3 +35,19 @@ WHERE {rsvp_table}.user_public_id = %s
            rsvp_table=TABLE_NAME,
            users_table=USERS_TABLE,
            events_table=EVENTS_TABLE).replace('\n', ' ')
+
+SELECT_USER_RSVP_BY_EVENT = """SELECT {events_table}.*
+FROM {database}.{rsvp_table}
+INNER JOIN {database}.{users_table}
+ON {rsvp_table}.user_public_id = {users_table}.public_id
+INNER JOIN {database}.{events_table}
+ON {rsvp_table}.event_public_id = {events_table}.public_id
+WHERE {rsvp_table}.user_public_id = %s AND {rsvp_table}.event_public_id = %s
+""".format(database=MYSQL_DATABASE_DB,
+           rsvp_table=TABLE_NAME,
+           users_table=USERS_TABLE,
+           events_table=EVENTS_TABLE).replace('\n', ' ')
+
+DELETE_RSVP = """DELETE FROM {database}.{table}
+WHERE {table}.user_public_id = %s AND {table}.event_public_id = %s
+""".format(database=MYSQL_DATABASE_DB, table=TABLE_NAME, ).replace('\n', ' ')

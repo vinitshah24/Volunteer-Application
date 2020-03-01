@@ -26,7 +26,7 @@ class RsvpActions(Resource):
         if len(data) != 1:
             return make_response(jsonify({'message': 'Required fields count not matched!'}), 401)
         else:
-            events_public_id = data['events_public_id']
+            events_public_id = data['event_public_id']
             try:
                 # check if the row already exists in DB
                 if user_public_id and events_public_id:
@@ -63,6 +63,7 @@ class RsvpActions(Resource):
                 return make_response(jsonify({'message': 'Database Exception!'}), 401)
         return make_response(jsonify({'message': 'Unauthorized request!'}), 401)
 
+    @jwt_required  # Will require accesss token
     def get(self):
         """Get the list of user-specific RSVP's"""
         public_id = get_jwt_identity()
@@ -70,8 +71,9 @@ class RsvpActions(Resource):
             if public_id:
                 conn = mysql.connect()
                 cursor = conn.cursor(pymysql.cursors.DictCursor)
-                cursor.execute(user_queries.SELECT_BY_PUBLIC_ID, public_id)
+                cursor.execute(rsvp_queries.SELECT_USER_RSVP, public_id)
                 rows = cursor.fetchall()
+                print(rows)
                 cursor.close()
                 conn.close()
                 events_list = []
@@ -95,6 +97,46 @@ class RsvpActions(Resource):
             print(e)
             return make_response(jsonify({'message': 'Database Exception!'}), 401)
 
+        return make_response(jsonify({'message': 'Unauthorized request!'}), 401)
+
+    @jwt_required  # Will require accesss token
+    def delete(self):
+        """Delete user's RSVP for an event"""
+        user_public_id = get_jwt_identity()
+        data = request.get_json()
+        if len(data) != 1:
+            return make_response(jsonify({'message': 'Required fields count not matched!'}), 401)
+        else:
+            try:
+                event_public_id = data['event_public_id']
+                if user_public_id and event_public_id:
+                    conn = mysql.connect()
+                    cursor = conn.cursor(pymysql.cursors.DictCursor)
+                    query_data = (user_public_id, event_public_id,)
+                    cursor.execute(
+                        rsvp_queries.SELECT_USER_RSVP_BY_EVENT, query_data)
+                    row = cursor.fetchone()
+                    cursor.close()
+                    conn.close()
+                    if row:
+                        conn = mysql.connect()
+                        cursor = conn.cursor()
+                        query_result = cursor.execute(
+                            rsvp_queries.DELETE_RSVP, query_data)
+                        conn.commit()
+                        cursor.close()
+                        conn.close()
+                        if query_result == 1:
+                            return make_response(jsonify({'message': 'RSVP deleted successfully!'}), 401)
+                        else:
+                            return make_response(jsonify({'message': 'RSVP deletion failed!'}), 401)
+                    else:
+                        return make_response(jsonify({'message': 'RSVP for the event not found!'}), 401)
+                else:
+                    return make_response(jsonify({'message': 'Required fields not found!'}), 401)
+            except Exception as e:
+                print(e)
+                return make_response(jsonify({'message': 'Database Exception!'}), 401)
         return make_response(jsonify({'message': 'Unauthorized request!'}), 401)
 
 
