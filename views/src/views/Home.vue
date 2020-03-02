@@ -48,9 +48,7 @@
                 </b-dropdown>
               </b-list-group-item>
               <b-list-group-item>
-                <b-button variant="success">
-                  Create Event
-                </b-button>
+                <b-button variant="success">Create Event</b-button>
               </b-list-group-item>
             </b-list-group>
 
@@ -73,7 +71,7 @@
 // import Card from "@/components/Card.vue";
 import GMap from "@/components/Map.vue";
 // import Card from "@/components/Card.vue";
-
+console.log(process.env.VUE_APP_MAP)
 export default {
   name: "Home",
   components: {

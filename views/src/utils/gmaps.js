@@ -1,4 +1,4 @@
-const API_KEY = 'AIzaSyCc-eK3IIeJJaTjQeoxg6g-2WWpY3bjhi8';
+const API_KEY = process.env.VUE_APP_MAP;
 const CALLBACK_NAME = 'gmapsCallback';
 
 let initialized = !!window.google;
@@ -30,7 +30,6 @@ export default function init() {
   script.async = true;
   script.defer = true;
   script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&callback=${CALLBACK_NAME}&libraries=visualization`;
-//   script.visualization = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCgjiTJDGVJSx9G_VzUdd3qQwyPCb-gimM&libraries=visualization";
   script.onerror = rejectInitPromise;
   document.querySelector('head').appendChild(script);
 

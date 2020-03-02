@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     fetchCharities: function() {
-      const baseURI = 'https://api.data.charitynavigator.org/v2/Organizations?app_id=0de7ab2c&app_key=fb69b924b2ba1ad56d97385ab0d316a8&pageSize=4&rated=true&state=NC'
+      const baseURI = `https://api.data.charitynavigator.org/v2/Organizations?app_id=0de7ab2c&app_key=${process.env.VUE_APP_CHARITY}&pageSize=4&rated=true&state=NC`
       this.$http.get(baseURI)
       .then((result) => {
         this.charities = result.data;
