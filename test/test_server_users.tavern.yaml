@@ -1,0 +1,42 @@
+# test_server_users.tavern.yaml
+
+test_name: Create a user
+
+stages:
+  - name: Send user data and make sure it appears in DB
+    request:
+      url: http://127.0.0.1:5000/api/v1/user
+      json:
+        first_name: Matthew
+        last_name: Frazier
+        email: matt.frazier@yahoo.com
+        username: mattfrazier_
+        password: hellokitty123
+      headers:
+        content-type: application/json
+      method: POST
+    response:
+      status_code: 200
+      body:
+        message: User created successfully!
+
+test_name: Make sure server accepts user and returns access token
+
+stages:
+  - name: login
+    request:
+      url: http://localhost:5000/login
+      json:
+        username: mattfrazier_
+        password: hellokitty123
+      method: POST
+      headers:
+        content-type: application/json
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+      save:
+        body:
+          access token: token
+          refresh token: token
