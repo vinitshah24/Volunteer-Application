@@ -2,11 +2,12 @@
 
 from flask import jsonify, make_response
 from flask_jwt_extended import JWTManager
+from flask_cors import CORS
 from blacklist import BLACKLIST
 from api import create_app
 
 app = create_app('config')
-
+CORS(app, support_credentials=True)
 jwt = JWTManager(app)
 
 

@@ -4,6 +4,7 @@ autopep8==1.5
 Click==7.0
 colorama==0.4.3
 Flask==1.1.1
+Flask-Cors==3.0.8
 Flask-JWT==0.3.2
 Flask-JWT-Extended==3.24.1
 Flask-MySQL==1.5.1
