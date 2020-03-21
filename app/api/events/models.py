@@ -31,6 +31,15 @@ ON {events_table}.user_public_id = {users_table}.public_id
            events_table=TABLE_NAME,
            users_table=USERS_TABLE).replace('\n', ' ')
 
+SELECT_USER_CREATED_EVENTS = """SELECT {events_table}.*, {users_table}.username, {users_table}.first_name, {users_table}.last_name
+FROM {database}.{events_table}
+LEFT JOIN {database}.{users_table}
+ON {events_table}.user_public_id = {users_table}.public_id
+WHERE {events_table}.user_public_id = %s;
+""".format(database=MYSQL_DATABASE_DB,
+           events_table=TABLE_NAME,
+           users_table=USERS_TABLE).replace('\n', ' ')
+
 INSERT_EVENT = """INSERT INTO {database}.{events_table}
 (public_id, name, category, details, address, county, state, date, time, user_public_id )
 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);

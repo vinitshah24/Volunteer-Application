@@ -22,6 +22,39 @@ api = Api(events_blueprint)
 
 class EventsList(Resource):
     """Events List"""
+    def get(self):
+        try:
+            conn = mysql.connect()
+            cursor = conn.cursor(pymysql.cursors.DictCursor)
+            cursor.execute(event_queries.SELECT_EVENTS)
+            rows = cursor.fetchall()
+            cursor.close()
+            conn.close()
+            events_list = []
+            for event in rows:
+                event_data = {}
+                event_data['public_id'] = event['public_id']
+                event_data['name'] = event['name']
+                event_data['category'] = event['category']
+                event_data['details'] = event['details']
+                event_data['address'] = event['address']
+                event_data['county'] = event['county']
+                event_data['state'] = event['state']
+                date = event['date']
+                event_data['date'] = date.strftime("%x")
+                event_data['time'] = str(event['time'])
+                event_data['user_public_id'] = event['user_public_id']
+                event_data['username'] = event['username']
+                event_data['first_name'] = event['first_name']
+                event_data['last_name'] = event['last_name']
+                events_list.append(event_data)
+            return jsonify({'events': events_list})
+        except Exception as e:
+            print(e)
+            return make_response(jsonify({'message': 'Database Exception!'}), 401)
+
+class EventActions(Resource):
+    """Events List"""
     @jwt_required  # Will require accesss token
     def get(self):
         """Get the list of events"""
@@ -38,7 +71,7 @@ class EventsList(Resource):
                 if safe_str_cmp(public_id, row['public_id']):
                     conn = mysql.connect()
                     cursor = conn.cursor(pymysql.cursors.DictCursor)
-                    cursor.execute(event_queries.SELECT_EVENTS)
+                    cursor.execute(event_queries.SELECT_USER_CREATED_EVENTS, public_id)
                     rows = cursor.fetchall()
                     cursor.close()
                     conn.close()
@@ -69,8 +102,6 @@ class EventsList(Resource):
 
         return make_response(jsonify({'message': 'Unauthorized request!'}), 401)
 
-
-class EventActions(Resource):
     """Event Actions"""
     @jwt_required  # Will require accesss token
     def post(self):
