@@ -8,6 +8,12 @@
       <b-navbar-nav>
         <b-nav-item to="/charities">Charities</b-nav-item>
       </b-navbar-nav>
+      <b-navbar-nav>
+        <b-nav-item to="/tester">Tester</b-nav-item>
+      </b-navbar-nav>
+      <b-navbar-nav>
+        <b-nav-item to="/contact">Contact</b-nav-item>
+      </b-navbar-nav>
 
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
