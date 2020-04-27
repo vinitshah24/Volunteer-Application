@@ -8,7 +8,8 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: Home,
+    props: true
   },
   {
     path: "/charities",
@@ -22,20 +23,27 @@ const routes = [
   {
     path: "/tester",
     name: "Tester",
-    component: () =>
-      import("../views/Tester.vue")
+    component: () => import("../views/Tester.vue")
   },
   {
     path: "/contact",
     name: "Contact",
-    component: () =>
-      import("../views/Contact.vue")
+    component: () => import("../views/Contact.vue")
+  },
+  {
+    path: "/events",
+    name: "Events",
+    component: () => import("../components/Events.vue")
   },
   {
     path: "/signin",
     name: "SignIn",
-    component: () =>
-    import("../components/SignIn.vue")
+    component: () => import("../components/SignIn.vue")
+  },
+  {
+    path: "/signup",
+    name: "SignUp",
+    component: () => import("../components/SignUp.vue")
   }
 ];
 

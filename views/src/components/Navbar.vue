@@ -6,6 +6,9 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
+        <b-nav-item to="/events">Events</b-nav-item>
+      </b-navbar-nav>
+      <!-- <b-navbar-nav>
         <b-nav-item to="/charities">Charities</b-nav-item>
       </b-navbar-nav>
       <b-navbar-nav>
@@ -13,7 +16,7 @@
       </b-navbar-nav>
       <b-navbar-nav>
         <b-nav-item to="/contact">Contact</b-nav-item>
-      </b-navbar-nav>
+      </b-navbar-nav> -->
 
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
@@ -22,14 +25,16 @@
           <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
         </b-nav-form>
 
-        <b-nav-item-dropdown right>
+        <b-nav-item-dropdown right v-if="this.$parent.loggedIn">
           <!-- Using 'button-content' slot -->
+
           <template v-slot:button-content>
             <strong>User Profile</strong>
           </template>
           <b-dropdown-item href="#">Profile</b-dropdown-item>
-          <b-dropdown-item to="/signin">Sign Out</b-dropdown-item>
+          <b-dropdown-item v-on:click="this.$parent.logOut">Sign Out</b-dropdown-item>
         </b-nav-item-dropdown>
+        <b-nav-item v-else to="/signin">Log In</b-nav-item>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>

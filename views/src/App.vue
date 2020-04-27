@@ -10,8 +10,89 @@
 <script>
 import Navbar from "@/components/Navbar.vue";
 export default {
+  data() {
+    return {
+      accessToken: null,
+      refreshToken: null,
+      loggedIn: false,
+      test: true
+    };
+  },
+  methods: {
+    async checkLogin() {
+      const userURI = `http://127.0.0.1:5000/api/v1/user`;
+      this.$http
+        .get(userURI, {
+          headers: {
+            Authorization: `Bearer ${this.token}`
+          }
+        })
+        .then(result => {
+          console.log(result.code);
+        })
+        .catch(error => {
+          console.log(error);
+          this.loggedIn = false;
+        })
+        .finally(() => {
+          // if (!this.loggedIn) {
+          //   this.login();
+          // }
+        });
+    },
+    login(e) {
+      const loginURI = `http://127.0.0.1:5000/api/v1/login`;
+      console.log(e.email);
+      this.$http
+        .post(loginURI, {
+          username: e.username,
+          password: e.password
+        })
+        .then(result => {
+          this.accessToken = result.data["access token"];
+          console.log(this.accessToken);
+          this.refreshToken = result.data["refresh token"];
+          console.log(this.refreshToken);
+          this.loggedIn = true;
+        });
+    },
+    logOut: function() {
+      this.$http
+        .get("http://127.0.0.1:5000/api/v1/logout/access_token", {
+          headers: {
+            Authorization: `Bearer ${this.accessToken}`
+          }
+        })
+        .then(result => {
+          this.accessToken = null;
+          this.refreshToken = null;
+          this.loggedIn = false;
+          console.log(result);
+        });
+    },
+    signup(e) {
+      const signupURI = `http://127.0.0.1:5000/api/v1/user`;
+      this.$http
+        .post(signupURI, {
+          first_name: e.firstName,
+          last_name: e.lastName,
+          email: e.email,
+          username: e.username,
+          password: e.password
+        })
+        .then(result => {
+          console.log(result);
+          return e;
+        })
+        .finally(this.login(e));
+    }
+  },
   components: {
     "top-header": Navbar
+  },
+  watch: {},
+  created() {
+    // this.checkLogin();
   }
 };
 </script>

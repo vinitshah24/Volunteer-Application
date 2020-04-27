@@ -1,4 +1,5 @@
 const API_KEY = process.env.VUE_APP_MAP;
+// const API_KEY = ""
 const CALLBACK_NAME = "gmapsCallback";
 
 let initialized = !!window.google;
