@@ -37,6 +37,7 @@ export default {
       );
       const response = await testResult.text();
       console.log("Finished getting counties");
+      console.log(response);
       return response;
     },
 
@@ -143,7 +144,8 @@ export default {
       console.log(`Heatmaps points: ${this.heatPoints}`);
       console.log(this.heatPoints);
       this.heatmap = new this.google.maps.visualization.HeatmapLayer({
-        data: this.heatPoints
+        data: this.heatPoints,
+        radius: 15
       });
       this.heatmap.setMap(this.gmap);
     }
@@ -338,7 +340,7 @@ export default {
     var location;
 
     this.geocoder.geocode(
-      { address: "Charlotte, North Carolina" },
+      { address: "Mecklenburg County, North Carolina" },
       (results, status) => {
         if (status !== "OK" || !results[0]) {
           throw new Error(status);
@@ -352,6 +354,9 @@ export default {
     );
 
     console.log(`location: ${location}`);
+    let tester = "hello";
+    this.$store.commit("setMap", tester);
+    console.log(this.$store);
   }
 };
 </script>
