@@ -13,10 +13,11 @@ api = Api(poverty_data_blueprint)
 class APIList(Resource):
     def get(self):
         json_dir = os.path.join(os.path.dirname(__file__), 'data')
-        file_path = os.path.join(json_dir, 'nc_data.json')
+        file_path = os.path.join(json_dir, 'output.json')
         # Check if file already exists or else call the api
         if not os.path.isfile(file_path):
             poverty_data.getJsonDataByNC()
+            poverty_data.merge_coorrdinates_data('nc_data.json', 'counties.json', 'output.json')
             print("External API was called!")
         if os.path.isfile(file_path):
             file = open(file_path)
