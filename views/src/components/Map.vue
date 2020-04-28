@@ -17,7 +17,8 @@ export default {
       gmap: null,
       google: null,
       heatPoints: [],
-      heatmap: null
+      heatmap: null,
+      jsonDataTest: {}
     };
   },
   components: {
@@ -52,26 +53,46 @@ export default {
       let counties = this.counties;
       console.log(`in populate counties: ${counties}`);
       counties.forEach(async county => {
-        console.log(county);
-        await geocoder.geocode(
-          { address: county.region },
-          (results, status) => {
-            console.log("calling geocoder");
-            if (status !== "OK" || !results[0]) {
-              new Error(status);
-            }
-            console.log(`status OK: ${status}`);
-            this.heatPoints.push({
-              location: new google.maps.LatLng(
-                results[0].geometry.location.lat(),
-                results[0].geometry.location.lng()
-              ),
-              weight: county.value
-            });
-            console.log(`heatpoints at end of pop: ${this.heatPoints}`);
-            this.generateHeatmap();
-          }
-        );
+        console.log(county.region);
+        // this.jsonDataTest[county.code] = {};
+        // this.jsonDataTest[county.code]["region"] = county.region;
+        // console.log(this.jsonDataTest);
+        await this.heatPoints.push({
+          location: new google.maps.LatLng(county.lat, county.lng),
+          weight: county.value
+        });
+        this.generateHeatmap();
+        // await geocoder.geocode(
+        //   { address: county.region },
+        //   (results, status) => {
+        //     console.log("calling geocoder");
+        //     if (status !== "OK" || !results[0]) {
+        //       new Error(status);
+        //     }
+        //     console.log(results[0]);
+        //     this.jsonDataTest[county.code][
+        //       "lat"
+        //     ] = results[0].geometry.location.lat();
+        //     this.jsonDataTest[county.code][
+        //       "lng"
+        //     ] = results[0].geometry.location.lng();
+        //     // console.log(tempy);
+        //     console.log(this.jsonDataTest);
+        //     console.log(`status OK: ${status}`);
+        //     this.heatPoints.push({
+        //       location: new google.maps.LatLng(
+        //         results[0].geometry.location.lat(),
+        //         results[0].geometry.location.lng()
+        //       ),
+        //       weight: county.value
+        //     });
+        //     console.log(JSON.stringify(this.jsonDataTest));
+
+        //     console.log(`heatpoints at end of pop: ${this.heatPoints}`);
+
+        //     this.generateHeatmap();
+        //   }
+        // );
       });
       // await geocoder.geocode({ address: counties[0] }, (results, status) => {
       //   console.log("calling geocoder");
@@ -154,7 +175,7 @@ export default {
   async created() {
     console.log("Created");
     // var temp = await this.getCounties();
-    this.counties = JSON.parse(await this.getCounties()).NC.slice(0, 10);
+    this.counties = JSON.parse(await this.getCounties());
     console.log(`Counties collected: ${this.counties}`);
 
     // console.log(JSON.parse(temp))
