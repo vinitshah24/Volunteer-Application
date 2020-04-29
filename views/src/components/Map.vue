@@ -11,14 +11,12 @@ export default {
     return {
       loading: false,
       error: null,
-      counties: [],
-      latlangs: [],
+      counties: this.$store.state.counties,
       geocoder: null,
       gmap: null,
       google: null,
       heatPoints: [],
-      heatmap: null,
-      jsonDataTest: {}
+      heatmap: null
     };
   },
   components: {},
@@ -36,7 +34,7 @@ export default {
       );
       const response = await testResult.text();
       console.log("Finished getting counties");
-      console.log(response);
+      // console.log(response);
       return response;
     },
 
@@ -52,9 +50,6 @@ export default {
       console.log(`in populate counties`);
       await counties.forEach(async county => {
         console.log(county.region);
-        // this.jsonDataTest[county.code] = {};
-        // this.jsonDataTest[county.code]["region"] = county.region;
-        // console.log(this.jsonDataTest);
         this.heatPoints.push({
           location: new google.maps.LatLng(county.lat, county.lng),
           weight: county.value
@@ -76,8 +71,15 @@ export default {
 
   async created() {
     console.log("Created");
-    this.counties = JSON.parse(await this.getCounties());
-    console.log(`Counties collected: ${this.counties}`);
+    if (!this.$store.state.counties) {
+      console.log("Counties not stored, calling getCounties");
+      let counties = JSON.parse(await this.getCounties());
+      this.$store.commit("setCounties", counties);
+      this.counties = this.$store.state.counties;
+    }
+    console.log("store has counties");
+    console.log(this.$store);
+    // console.log(`Counties collected: ${this.counties}`);
   },
 
   beforeMount() {},
@@ -88,13 +90,11 @@ export default {
     this.initializeMap();
     this.heatmaps = await this.populateHeat(this.google);
 
-    console.log(`mounted: ${this.counties}`);
+    console.log(`mounted`);
 
-    console.log(`this is latlngs: ${this.latlangs}`);
-
-    var eventString =
-      "<div><h4>Habitat For Humanity Event</h4>" +
-      "<p>Come help hang drywall in our new homebuild</p></div>";
+    // var eventString =
+    //   "<div><h4>Habitat For Humanity Event</h4>" +
+    //   "<p>Come help hang drywall in our new homebuild</p></div>";
 
     // var eventsMarkers = new this.google.maps.Marker({
     //   position: new this.google.maps.LatLng(35.255146, -80.822402),
@@ -110,19 +110,16 @@ export default {
 
     var location;
 
-    this.geocoder.geocode(
-      { address: "Mecklenburg County, North Carolina" },
-      (results, status) => {
-        if (status !== "OK" || !results[0]) {
-          throw new Error(status);
-        }
-        console.log(
-          `results from Clt geocoder: ${results[0].geometry.location.lat()}`
-        );
-        this.gmap.setCenter(results[0].geometry.location);
-        this.gmap.fitBounds(results[0].geometry.viewport);
+    this.geocoder.geocode({ address: "North Carolina" }, (results, status) => {
+      if (status !== "OK" || !results[0]) {
+        throw new Error(status);
       }
-    );
+      console.log(
+        `results from NC geocoder: ${results[0].geometry.location.lat()}`
+      );
+      this.gmap.setCenter(results[0].geometry.location);
+      this.gmap.fitBounds(results[0].geometry.viewport);
+    });
 
     console.log(`location: ${location}`);
     let tester = "hello";

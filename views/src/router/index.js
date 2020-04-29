@@ -33,12 +33,12 @@ const routes = [
   {
     path: "/events",
     name: "Events",
-    component: () => import("../components/Events.vue")
+    component: () => import("../views/Events.vue")
   },
   {
     path: "/signin",
     name: "SignIn",
-    component: () => import("../components/SignIn.vue")
+    component: () => import("../views/SignIn.vue")
   },
   {
     path: "/signup",
