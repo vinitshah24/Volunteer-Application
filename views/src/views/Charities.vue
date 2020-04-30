@@ -20,7 +20,10 @@
             <b-card-text>{{ charities[cardCount(rows, column) - 1].cause }}</b-card-text>
 
             <template v-slot:footer>
-              <b-button :href="charities[column].charityNavigatorURL" variant="primary">Donate!</b-button>
+              <b-button
+                :href="charityNavUrlHead + charities[cardCount(rows, column) - 1].charityName.toLowerCase().split(/[ ,]+/).join('+') + charityNavUrlTail"
+                variant="primary"
+              >Donate!</b-button>
             </template>
           </b-card>
         </b-col>
@@ -52,7 +55,10 @@ export default {
       title: "",
       subTitle: "Current rating: ",
       rating: 4,
-      numberOfColumns: 3
+      numberOfColumns: 3,
+      charityNavUrlHead:
+        "https://www.charitynavigator.org/index.cfm?keyword_list=",
+      charityNavUrlTail: "&bay=search.results"
     };
   },
   computed: {
