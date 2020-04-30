@@ -25,7 +25,7 @@
           <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
         </b-nav-form>
 
-        <b-nav-item-dropdown right v-if="this.$parent.loggedIn">
+        <b-nav-item-dropdown right v-if="this.$store.state.loggedIn">
           <!-- Using 'button-content' slot -->
 
           <template v-slot:button-content>

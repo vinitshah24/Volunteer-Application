@@ -21,10 +21,12 @@ export default {
   methods: {
     async checkLogin() {
       const userURI = `http://127.0.0.1:5000/api/v1/user`;
+      const refreshURI = `http://127.0.0.1:5000/api/v1/refresh`;
+
       this.$http
         .get(userURI, {
           headers: {
-            Authorization: `Bearer ${this.token}`
+            Authorization: `Bearer ${this.$store.state.userAccessToken}`
           }
         })
         .then(result => {
@@ -32,7 +34,19 @@ export default {
         })
         .catch(error => {
           console.log(error);
-          this.loggedIn = false;
+          this.$http
+            .get(refreshURI, {
+              headers: {
+                Authorization: `Bearer ${this.$store.state.userRefreshToken}`
+              }
+            })
+            .then(result => {
+              console.log(result.code);
+            })
+            .catch(error => {
+              console.log(error);
+            });
+          this.$store.commit("setLoggedIn", false);
         })
         .finally(() => {
           // if (!this.loggedIn) {
@@ -49,25 +63,35 @@ export default {
           password: e.password
         })
         .then(result => {
-          this.accessToken = result.data["access token"];
-          console.log(this.accessToken);
-          this.refreshToken = result.data["refresh token"];
-          console.log(this.refreshToken);
-          this.loggedIn = true;
+          this.$store.commit("setAccess", result.data["access token"]);
+          console.log(this.$store.state.userAccessToken);
+          this.$store.commit("setRefresh", result.data["refresh token"]);
+          console.log(this.$store.state.userRefreshToken);
+          this.$store.commit("setLoggedIn", true);
         });
     },
     logOut: function() {
       this.$http
         .get("http://127.0.0.1:5000/api/v1/logout/access_token", {
           headers: {
-            Authorization: `Bearer ${this.accessToken}`
+            Authorization: `Bearer ${this.$store.state.userAccessToken}`
           }
         })
         .then(result => {
-          this.accessToken = null;
-          this.refreshToken = null;
-          this.loggedIn = false;
+          this.$store.state.userAccessTokenccessToken = null;
+          this.$store.state.loggedIn = false;
           console.log(result);
+          this.$http
+            .get("http://127.0.0.1:5000/api/v1/logout/refresh_token", {
+              headers: {
+                Authorization: `Bearer ${this.$store.state.userRefreshToken}`
+              }
+            })
+            .then(result => {
+              this.$store.state.userAccessTokenccessToken = null;
+              this.$store.state.userRefreshToken = null;
+              console.log(result);
+            });
         });
     },
     signup(e) {
@@ -92,7 +116,7 @@ export default {
   },
   watch: {},
   created() {
-    // this.checkLogin();
+    this.checkLogin();
   }
 };
 </script>

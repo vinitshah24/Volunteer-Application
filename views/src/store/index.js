@@ -6,6 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     userAccessToken: null,
+    userRefreshToken: null,
+    loggedIn: false,
     google: null,
     gmap: null,
     heatmap: null,
@@ -15,6 +17,12 @@ export default new Vuex.Store({
   mutations: {
     setAccess(state, payload) {
       state.userAccessToken = payload;
+    },
+    setRefresh(state, payload) {
+      state.userRefreshToken = payload;
+    },
+    setLoggedIn(state, payload) {
+      state.loggedIn = payload;
     },
     setGoogle(state, payload) {
       state.google = payload;

@@ -49,7 +49,7 @@ export default {
       let counties = this.counties;
       console.log(`in populate counties`);
       await counties.forEach(async county => {
-        console.log(county.region);
+        // console.log(county.region);
         this.heatPoints.push({
           location: new google.maps.LatLng(county.lat, county.lng),
           weight: county.value
