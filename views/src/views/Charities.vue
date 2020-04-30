@@ -1,6 +1,7 @@
 <template>
   <div class="charities">
-    <h1 class="display-4" style="margin-left:auto">Donate to these worthy charities in your area</h1>
+    <h1 class="display-4" style="text-align: left">Donate to these worthy charities in your area</h1>
+
     <b-container v-for="rows in rowCount" :key="rows.id">
       <b-card-group deck>
         <b-col group deck v-for="column in numberOfColumns" :key="column.id">
@@ -9,11 +10,11 @@
             :rating="cardCount(rows, column)"
             :title="charities[cardCount(rows, column) - 1].charityName"
             :sub-title="subTitle + charities[cardCount(rows, column) - 1].rating"
-            img-src="https://picsum.photos/600/300/?image=25"
+            :img-src="getImgUrl(charities, cardCount(rows, column) - 1)"
             img-alt="Image"
             img-top
             tag="article"
-            style="min-height: 25rem; margin: 25px 0px"
+            style="height: 450px; margin: 25px 0px"
             class="mb-2"
           >
             <b-card-text>{{ charities[cardCount(rows, column) - 1].cause }}</b-card-text>
@@ -60,6 +61,11 @@ export default {
     }
   },
   methods: {
+    getImgUrl: function(charity, index) {
+      return require(`@/assets/images/${charity[index].cause
+        .split(/[ ,]+/)[0]
+        .toLowerCase()}.png`);
+    },
     cardCount: function(rows, columns) {
       return (rows - 1) * this.numberOfColumns + columns;
     },
@@ -98,3 +104,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+img.card-img-top {
+  height: 250px;
+}
+</style>
