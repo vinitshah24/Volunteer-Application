@@ -71,34 +71,27 @@
 // import Card from "@/components/Card.vue";
 import GMap from "@/components/Map.vue";
 // import Card from "@/components/Card.vue";
-console.log(process.env.VUE_APP_MAP)
+console.log(process.env.VUE_APP_MAP);
 export default {
   name: "Home",
   components: {
     // card: Card,
     gmap: GMap
+  },
+  async created() {
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow"
+    };
+    const testResult = await fetch(
+      "http://127.0.0.1:5000/api/v1/events",
+      requestOptions
+    );
+    const response = await testResult.text();
+    this.$store.commit("setEvents", JSON.parse(response)["events"])
+    // console.log(JSON.parse(response));
+    console.log(this.$store.state.events)
   }
-  // async mounted() {
-  //   try {
-  //     const google = await gmapsInit();
-  //     const geocoder = new google.maps.Geocoder();
-  //     const map = new google.maps.Map(this.$el);
-
-  //     geocoder.geocode(
-  //       { address: "Mecklenberg County, North Carolina" },
-  //       (results, status) => {
-  //         if (status !== "OK" || !results[0]) {
-  //           throw new Error(status);
-  //         }
-
-  //         map.setCenter(results[0].geometry.location);
-  //         map.fitBounds(results[0].geometry.viewport);
-  //       }
-  //     );
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
 };
 </script>
 

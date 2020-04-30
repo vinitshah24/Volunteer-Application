@@ -13,18 +13,7 @@ export default {
   data() {
     return {
       fields: ["name", "category", "details", "address", "date", "time"],
-      events: [
-        {
-          name: "Event 3",
-          category: "twt",
-          details: "segbc",
-          address: "Chwgearlotte",
-          county: "Unwggion",
-          state: "NCwegw",
-          date: "2021-02-24",
-          time: "02:02:00"
-        }
-      ],
+      events: this.$store.state.events,
       items: [
         { age: 40, first_name: "Dickerson", last_name: "Macdonald" },
         { age: 21, first_name: "Larsen", last_name: "Shaw" },
@@ -53,35 +42,38 @@ export default {
     },
     createEvent() {
       const createEventURI = `http://127.0.0.1:5000/api/v1/event`;
-      console.log(this.$root.$router.app.$children[0].accessToken);
-      this.$http
-        .post(createEventURI, {
-          data: {
-            name: "Volunteering",
-            category: "Education",
-            details: "Read to kids",
-            address: "Charlotte",
-            county: "Mecklenburg",
-            state: "NC",
-            date: "2021-02-24",
-            time: "02:02:00"
-          },
-          headers: {
-            Authorization: `Bearer ${this.$root.$router.app.$children[0].accessToken}`
-          }
-        })
-        .then(result => {
-          console.log(result);
-        })
-        .catch(error => {
-          console.log(error);
-          alert("You must log in to create an event!");
-        })
-        .finally(this.getEvents());
+      console.log(this.$store.state.userAccessToken);
+      const eventData = {
+        name: "Volunteering",
+        category: "Education",
+        details: "Read to kids",
+        address: "Charlotte",
+        county: "Mecklenburg",
+        state: "NC",
+        date: "2021-02-24",
+        time: "02:02:00"
+      };
+      const config = {
+        headers: {
+          Authorization: `Bearer ${this.$store.state.userAccessToken}`
+        }
+      };
+      if (this.$store.state.loggedIn) {
+        this.$http
+          .post(createEventURI, eventData, config)
+          .then(result => {
+            console.log(result);
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      } else {
+        alert("You must log in to create an event!");
+      }
     }
   },
   async mounted() {
-    this.getEvents();
+    // this.getEvents();
   }
 };
 </script>

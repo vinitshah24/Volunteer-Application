@@ -11,6 +11,7 @@ export default new Vuex.Store({
     error: false,
     status: null,
     username: null,
+    events: [],
     google: null,
     gmap: null,
     heatmap: null,
@@ -35,6 +36,9 @@ export default new Vuex.Store({
     },
     setUsername(state, payload) {
       state.username = payload;
+    },
+    setEvents(state, payload) {
+      state.events = payload;
     },
     setGoogle(state, payload) {
       state.google = payload;
