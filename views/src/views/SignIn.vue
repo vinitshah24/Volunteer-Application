@@ -25,11 +25,16 @@
                   placeholder="Enter password"
                 ></b-form-input>
               </b-form-group>
-
-              <b-button type="submit" variant="primary">Submit</b-button>
-              <b-button type="reset" variant="danger">Reset</b-button>
-              <br />
-              <b-button to="/signup">Sign up</b-button>
+              <div v-if="loginError" class="error-message">
+                <span>Incorrect Credentials, please try again</span>
+              </div>
+              <div>
+                <b-button class="top-button" type="submit" variant="primary">Submit</b-button>
+                <b-button class="top-button" type="reset" variant="danger">Reset</b-button>
+              </div>
+              <div>
+                <b-button to="/signup">Sign up</b-button>
+              </div>
             </b-form>
           </b-card>
         </b-col>
@@ -47,18 +52,29 @@ export default {
         username: "",
         password: ""
       },
-
+      regexName: /^[a-zA-Z\d]{8,16}$/,
+      regexPassword: / /,
+      loginError: false,
       show: true
     };
   },
   methods: {
-    onSubmit(evt) {
+    async onSubmit(evt) {
       evt.preventDefault();
       // alert(JSON.stringify(this.form));
-      console.log(this.$root.$router.app.$children[0]);
-      this.$emit("login-test", this.form);
-      this.$root.$router.app.$children[0].login(this.form);
-      this.$router.push("/");
+      // console.log(this.$root.$router.app.$children[0]);
+      // this.$emit("login-test", this.form);
+      // if (this.$root.$router.app.$children[0].login(this.form) == 401) {
+      //   alert("Invalid Credentials!");
+      // } else if (this.$root.$router.app.$children[0].login(this.form) == 200) {
+      //   this.$router.replace("/");
+      // }
+      // let status = await this.$root.$router.app.$children[0].login(this.form);
+      // console.log(status);
+      this.login(this.form);
+      // console.log(this.$store.state.error);
+
+      // this.$router.push("/");
     },
     onReset(evt) {
       evt.preventDefault();
@@ -70,7 +86,47 @@ export default {
       this.$nextTick(() => {
         this.show = true;
       });
+    },
+    login(e) {
+      const loginURI = `http://127.0.0.1:5000/api/v1/login`;
+      console.log(e.email);
+      this.$http
+        .post(loginURI, {
+          username: e.username,
+          password: e.password
+        })
+        .then(result => {
+          // console.log(result.status)
+          this.$store.commit("setAccess", result.data["access token"]);
+          console.log(this.$store.state.userAccessToken);
+          this.$store.commit("setRefresh", result.data["refresh token"]);
+          console.log(this.$store.state.userRefreshToken);
+          this.$store.commit("setLoggedIn", true);
+          this.$store.commit("setError", false);
+          this.$store.commit("setStatus", result.status);
+          this.$router.replace({
+            path: "/",
+            params: { status: "result.status" }
+          });
+        })
+        .catch(error => {
+          this.$store.commit("setError", true);
+          this.$store.commit("setStatus", error.response.status);
+          this.loginError = this.$store.state.status;
+        });
     }
   }
 };
 </script>
+
+<style scoped>
+.error-message {
+  color: red;
+  text-align: left;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+.top-button {
+  margin: .5rem;
+}
+</style>

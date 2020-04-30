@@ -8,6 +8,8 @@ export default new Vuex.Store({
     userAccessToken: null,
     userRefreshToken: null,
     loggedIn: false,
+    error: false,
+    status: null,
     google: null,
     gmap: null,
     heatmap: null,
@@ -23,6 +25,12 @@ export default new Vuex.Store({
     },
     setLoggedIn(state, payload) {
       state.loggedIn = payload;
+    },
+    setError(state, payload) {
+      state.error = payload;
+    },
+    setStatus(state, payload) {
+      state.status = payload;
     },
     setGoogle(state, payload) {
       state.google = payload;

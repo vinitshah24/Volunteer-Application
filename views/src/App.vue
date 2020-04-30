@@ -63,11 +63,23 @@ export default {
           password: e.password
         })
         .then(result => {
+          // console.log(result.status)
           this.$store.commit("setAccess", result.data["access token"]);
           console.log(this.$store.state.userAccessToken);
           this.$store.commit("setRefresh", result.data["refresh token"]);
           console.log(this.$store.state.userRefreshToken);
           this.$store.commit("setLoggedIn", true);
+          this.$store.commit("setError", false);
+          this.$store.commit("setStatus", result.status);
+          this.router.replace({
+            path: "signin",
+            params: { status: "result.status" }
+          });
+        })
+        .catch(error => {
+          // console.log(error.response.status);
+          this.$store.commit("setError", true);
+          this.$store.commit("setStatus", error.response.status);
         });
     },
     logOut: function() {
@@ -115,8 +127,8 @@ export default {
     "top-header": Navbar
   },
   watch: {},
-  created() {
-    this.checkLogin();
+  async created() {
+    await this.checkLogin();
   }
 };
 </script>
