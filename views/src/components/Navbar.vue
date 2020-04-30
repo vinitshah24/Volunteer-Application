@@ -29,7 +29,9 @@
           <!-- Using 'button-content' slot -->
 
           <template v-slot:button-content>
-            <strong>User Profile</strong>
+            <strong>
+              <span>{{ user }}</span>
+            </strong>
           </template>
           <b-dropdown-item href="#">Profile</b-dropdown-item>
           <b-dropdown-item v-on:click="this.$parent.logOut">Sign Out</b-dropdown-item>
@@ -41,7 +43,19 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      username: this.$store.state.username,
+      test: "squeeeep"
+    };
+  },
+  computed: {
+    user() {
+      return this.$store.state.username;
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>

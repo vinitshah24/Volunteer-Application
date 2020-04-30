@@ -42,9 +42,13 @@ export default {
             })
             .then(result => {
               console.log(result.code);
+              this.$store.commit("setAccess", result.data["access token"]);
             })
             .catch(error => {
               console.log(error);
+              // if (error.response.status === 401 && this.$route.path != '/signin') {
+              //   this.$router.push("/signin");
+              // }
             });
           this.$store.commit("setLoggedIn", false);
         })
@@ -71,10 +75,10 @@ export default {
           this.$store.commit("setLoggedIn", true);
           this.$store.commit("setError", false);
           this.$store.commit("setStatus", result.status);
-          this.router.replace({
-            path: "signin",
-            params: { status: "result.status" }
-          });
+          // this.router.replace({
+          //   path: "signin",
+          //   params: { status: "result.status" }
+          // });
         })
         .catch(error => {
           // console.log(error.response.status);
@@ -90,7 +94,7 @@ export default {
           }
         })
         .then(result => {
-          this.$store.state.userAccessTokenccessToken = null;
+          this.$store.state.userAccessToken = null;
           this.$store.state.loggedIn = false;
           console.log(result);
           this.$http
@@ -100,8 +104,8 @@ export default {
               }
             })
             .then(result => {
-              this.$store.state.userAccessTokenccessToken = null;
-              this.$store.state.userRefreshToken = null;
+              this.$store.state.userAccessToken = null;
+              this.$store.state.username = null;
               console.log(result);
             });
         });
@@ -117,10 +121,18 @@ export default {
           password: e.password
         })
         .then(result => {
-          console.log(result);
-          return e;
+          if (result.status === 200) {
+            this.$store.commit(
+              "setUsername",
+              JSON.parse(result.config.data)["username"]
+            );
+          }
+          console.log(this.$store.state.username);
+          // return e;
         })
-        .finally(this.login(e));
+        .finally(() => {
+          this.login(e);
+        });
     }
   },
   components: {

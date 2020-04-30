@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-container mw-25>
+    <b-container>
       <b-row>
         <b-col></b-col>
         <b-col>
@@ -33,7 +33,7 @@
                 <b-button class="top-button" type="reset" variant="danger">Reset</b-button>
               </div>
               <div>
-                <b-button to="/signup">Sign up</b-button>
+                <b-button variant="success" to="/signup">Sign up</b-button>
               </div>
             </b-form>
           </b-card>
@@ -104,6 +104,8 @@ export default {
           this.$store.commit("setLoggedIn", true);
           this.$store.commit("setError", false);
           this.$store.commit("setStatus", result.status);
+          this.$store.commit("setUsername", e.username);
+          console.log(this.$store.state.username)
           this.$router.replace({
             path: "/",
             params: { status: "result.status" }
@@ -127,6 +129,6 @@ export default {
   margin-bottom: 1rem;
 }
 .top-button {
-  margin: .5rem;
+  margin: 0.5rem;
 }
 </style>
