@@ -41,6 +41,9 @@ export default new Vuex.Store({
     setUser(state, payload) {
       state.user = payload;
     },
+    setUserEvents(state, payload) {
+      state.user.events = payload;
+    },
     setEvents(state, payload) {
       state.events = payload;
     },

@@ -1,7 +1,16 @@
 <template>
   <div>
     <h1>Upcoming Events</h1>
-    <b-table striped hover :items="events" :fields="fields" v-if="events.length"></b-table>
+    <div>
+      <b-tabs content-class="mt-3">
+        <b-tab v-if="this.$store.state.loggedIn" title="My Events" active>
+          <b-table striped hover :items="userEvents" :fields="fields" v-if="userEvents.length"></b-table>
+        </b-tab>
+        <b-tab title="All Events">
+          <b-table striped hover :items="allEvents" :fields="fields" v-if="allEvents.length"></b-table>
+        </b-tab>
+      </b-tabs>
+    </div>
     <div>
       <b-button variant="success" v-on:click="toCreateEvent">Create Event</b-button>
     </div>
@@ -13,7 +22,7 @@ export default {
   data() {
     return {
       fields: ["name", "category", "details", "address", "date", "time"],
-      events: this.$store.state.events,
+      // allEvents: this.$store.state.events,
       items: [
         { age: 40, first_name: "Dickerson", last_name: "Macdonald" },
         { age: 21, first_name: "Larsen", last_name: "Shaw" },
@@ -22,16 +31,24 @@ export default {
       ]
     };
   },
+  computed: {
+    allEvents: function() {
+      return this.$store.state.events;
+    },
+    userEvents: function() {
+      return this.$store.state.user.events;
+    }
+  },
   methods: {
     async getEvents() {
       const eventsURI = `http://127.0.0.1:5000/api/v1/events`;
       this.$http
         .get(eventsURI)
         .then(result => {
-          console.log(result);
-          this.events = result.data.events;
+          // console.log(result.data.events);
+          this.$store.commit("setEvents", result.data.events);
 
-          this.events.forEach(event => {
+          this.allEvents.forEach(event => {
             event.address = `${event.address}, ${event.state}`;
           });
         })
@@ -74,17 +91,40 @@ export default {
     },
     toCreateEvent() {
       if (this.$store.state.loggedIn) {
-        this.$router.replace('/create')
+        this.$router.replace("/create");
       } else {
         alert("You must log in to create an event!");
       }
+    },
+    getRSVPs() {
+      const rsvpURI = `http://127.0.0.1:5000/api/v1/rsvp`;
+      const config = {
+        headers: {
+          Authorization: `Bearer ${this.$store.state.userAccessToken}`
+        }
+      };
+      this.$http
+        .get(rsvpURI, config)
+        .then(result => {
+          console.log(result);
+          this.$store.commit("setUserEvents", result.data.events);
+          console.log(this.$store.state.user);
+        })
+        .catch(error => {
+          console.log(error.config);
+        })
+        .finally(() => {});
     }
   },
   async created() {
-    this.getEvents();
+    await this.getEvents();
+    if (this.$store.state.loggedIn) {
+      console.log("user logged in");
+      this.getRSVPs();
+    }
   },
   async mounted() {
-    // this.getEvents();
+    console.log(this.$store.state.events);
   }
 };
 </script>
