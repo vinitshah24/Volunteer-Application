@@ -66,6 +66,9 @@ export default {
         radius: 15
       });
       this.heatmap.setMap(this.gmap);
+    },
+    toggleHeat() {
+      this.heatmap.setMap(this.heatmap.getMap() ? null : this.gmap);
     }
   },
 

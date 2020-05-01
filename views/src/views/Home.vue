@@ -2,10 +2,12 @@
   <div>
     <b-container fluid>
       <b-row>
-        <b-col></b-col>
+        <b-col>
+          <b-button @click="click" size="sm" variant="info">Toggle Heatmap</b-button>
+        </b-col>
         <b-col md="8">
           <div>
-            <gmap />
+            <gmap ref="gmap" />
           </div>
         </b-col>
         <b-col>
@@ -74,9 +76,17 @@ import GMap from "@/components/Map.vue";
 console.log(process.env.VUE_APP_MAP);
 export default {
   name: "Home",
+  data() {
+    return {};
+  },
   components: {
     // card: Card,
     gmap: GMap
+  },
+  methods: {
+    click: function() {
+      this.$refs.gmap.toggleHeat();
+    }
   },
   async created() {
     const requestOptions = {
@@ -88,9 +98,9 @@ export default {
       requestOptions
     );
     const response = await testResult.text();
-    this.$store.commit("setEvents", JSON.parse(response)["events"])
+    this.$store.commit("setEvents", JSON.parse(response)["events"]);
     // console.log(JSON.parse(response));
-    console.log(this.$store.state.events)
+    console.log(this.$store.state.events);
   }
 };
 </script>
