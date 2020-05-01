@@ -10,7 +10,12 @@
       <b-row align-h="center" class="mt-2">
         <button v-on:click="logOut">Log Out</button>
       </b-row>
-
+      <b-row align-h="center" class="mt-2">
+        <button v-on:click="rsvp">RSVP</button>
+      </b-row>
+      <b-row align-h="center" class="mt-2">
+        <button v-on:click="getRSVPs">Get RSVPs</button>
+      </b-row>
       <b-row align-h="center" class="mt-2">
         <button v-on:click="printUser">Print Logged In User</button>
       </b-row>
@@ -57,7 +62,7 @@ export default {
       this.$http
         .get(userURI, {
           headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${this.$store.state.userAccessToken}`
           }
         })
         .then(result => {
@@ -189,6 +194,43 @@ export default {
         .then(result => {
           console.log(result);
         });
+    },
+    rsvp() {
+      const rsvpURI = `http://127.0.0.1:5000/api/v1/rsvp`;
+      console.log(this.$store.state.userAccessToken);
+      const rsvpData = {
+        event_public_id: "85518821-757d-407d-b647-1a1151a59a1f"
+      };
+      const config = {
+        headers: {
+          Authorization: `Bearer ${this.$store.state.userAccessToken}`
+        }
+      };
+      this.$http
+        .put(rsvpURI, rsvpData, config)
+        .then(result => {
+          console.log(result);
+        })
+        .catch(error => {
+          console.log(error.response);
+        });
+    },
+    getRSVPs() {
+      const rsvpURI = `http://127.0.0.1:5000/api/v1/rsvp`;
+      const config = {
+        headers: {
+          Authorization: `Bearer ${this.$store.state.userAccessToken}`
+        }
+      };
+      this.$http
+        .get(rsvpURI, config)
+        .then(result => {
+          console.log(result);
+        })
+        .catch(error => {
+          console.log(error.config);
+        })
+        .finally(() => {});
     }
   }
 };
