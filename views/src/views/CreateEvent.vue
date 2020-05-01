@@ -119,9 +119,9 @@ export default {
     },
     createEvent(e) {
       const createEventURI = `http://127.0.0.1:5000/api/v1/event`;
-      console.log(e)
+      console.log(e);
       console.log(this.$store.state.userAccessToken);
-    //   const eventData = e;
+      //   const eventData = e;
       const config = {
         headers: {
           Authorization: `Bearer ${this.$store.state.userAccessToken}`
@@ -132,15 +132,39 @@ export default {
           .post(createEventURI, this.form, config)
           .then(result => {
             console.log(result);
-            this.$router.push("/events");
+            this.rsvp(result.data.public_id);
             // this.getEvents();
+          })
+          .then(() => {
+            this.$router.push("/events");
           })
           .catch(error => {
             console.log(error.config);
+            alert(`Error: ${error.config.message}`)
           });
       } else {
         alert("You must log in to create an event!");
       }
+    },
+    rsvp(id) {
+      const rsvpURI = `http://127.0.0.1:5000/api/v1/rsvp`;
+      console.log(this.$store.state.userAccessToken);
+      const rsvpData = {
+        event_public_id: id
+      };
+      const config = {
+        headers: {
+          Authorization: `Bearer ${this.$store.state.userAccessToken}`
+        }
+      };
+      this.$http
+        .put(rsvpURI, rsvpData, config)
+        .then(result => {
+          console.log(result);
+        })
+        .catch(error => {
+          console.log(error.response);
+        });
     }
   }
 };

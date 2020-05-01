@@ -4,7 +4,13 @@
     <div>
       <b-tabs content-class="mt-3">
         <b-tab v-if="this.$store.state.loggedIn" title="My Events" active>
-          <b-table striped hover :items="userEvents" :fields="fields" v-if="userEvents && userEvents.length > 1"></b-table>
+          <b-table
+            striped
+            hover
+            :items="userEvents"
+            :fields="fields"
+            v-if="userEvents && userEvents.length >= 1"
+          ></b-table>
         </b-tab>
         <b-tab title="All Events">
           <b-table striped hover :items="allEvents" :fields="fields" v-if="allEvents.length"></b-table>
@@ -45,10 +51,10 @@ export default {
         .then(result => {
           // console.log(result.data.events);
           this.$store.commit("setEvents", result.data.events);
-
-          this.allEvents.forEach(event => {
-            event.address = `${event.address}, ${event.state}`;
-          });
+          this.formatFields(this.allEvents);
+          // this.allEvents.forEach(event => {
+          //   event.address = `${event.address}, ${event.state}`;
+          // });
           if (this.$store.state.loggedIn) {
             console.log("user logged in");
             this.getRSVPs();
@@ -99,6 +105,7 @@ export default {
       }
     },
     getRSVPs() {
+      console.log("calling RSVPs");
       const rsvpURI = `http://127.0.0.1:5000/api/v1/rsvp`;
       const config = {
         headers: {
@@ -110,13 +117,22 @@ export default {
         .then(result => {
           console.log(result);
           this.$store.commit("setUserEvents", result.data.events);
-          this.userEvents = this.$store.state.user.events;
+          // this.userEvents = this.$store.state.user.events;
           console.log(this.$store.state.user);
+        })
+        .then(() => {
+          this.userEvents = this.$store.state.user.events;
+          this.formatFields(this.userEvents);
         })
         .catch(error => {
           console.log(error.config);
         })
         .finally(() => {});
+    },
+    formatFields(arrs) {
+      arrs.forEach(event => {
+        event.address = `${event.address}, ${event.state}`;
+      });
     }
   },
   async created() {
