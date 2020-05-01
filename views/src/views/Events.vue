@@ -3,7 +3,7 @@
     <h1>Upcoming Events</h1>
     <b-table striped hover :items="events" :fields="fields" v-if="events.length"></b-table>
     <div>
-      <b-button variant="success" v-on:click="createEvent">Create Event</b-button>
+      <b-button variant="success" v-on:click="toCreateEvent">Create Event</b-button>
     </div>
   </div>
 </template>
@@ -63,14 +63,25 @@ export default {
           .post(createEventURI, eventData, config)
           .then(result => {
             console.log(result);
+            this.getEvents();
           })
           .catch(error => {
-            console.log(error);
+            console.log(error.result);
           });
       } else {
         alert("You must log in to create an event!");
       }
+    },
+    toCreateEvent() {
+      if (this.$store.state.loggedIn) {
+        this.$router.replace('/create')
+      } else {
+        alert("You must log in to create an event!");
+      }
     }
+  },
+  async created() {
+    this.getEvents();
   },
   async mounted() {
     // this.getEvents();
