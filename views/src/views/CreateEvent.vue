@@ -61,14 +61,18 @@
             <b-form-input id="input-6" v-model="form.date" type="text" required placeholder="Date"></b-form-input>
           </b-form-group>
           <b-form-group id="input-group-5" label="Time" label-for="input-7">
-            <b-form-input
+            <!-- <b-form-input
               id="input-7"
               v-model="form.time"
               type="text"
               required
               placeholder="Enter Time"
-            ></b-form-input>
+            ></b-form-input>-->
+            <b-form-timepicker v-model="timeValue" locale="en"></b-form-timepicker>
+
+            <div class="mt-2">Value: '{{ timeValue }}'</div>
           </b-form-group>
+          <div></div>
 
           <b-button class="top-button" type="submit" variant="primary">Create Event</b-button>
           <b-button class="top-button" type="reset" variant="danger">Reset Form</b-button>
@@ -93,7 +97,8 @@ export default {
         time: ""
       },
 
-      show: true
+      show: true,
+      timeValue: ""
     };
   },
   methods: {
@@ -140,7 +145,7 @@ export default {
           })
           .catch(error => {
             console.log(error.config);
-            alert(`Error: ${error.config.message}`)
+            alert(`Error: ${error.config.message}`);
           });
       } else {
         alert("You must log in to create an event!");
