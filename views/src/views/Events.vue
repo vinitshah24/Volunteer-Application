@@ -4,7 +4,7 @@
     <div>
       <b-tabs content-class="mt-3">
         <b-tab v-if="this.$store.state.loggedIn" title="My Events" active>
-          <b-table striped hover :items="userEvents" :fields="fields" v-if="userEvents.length"></b-table>
+          <b-table striped hover :items="userEvents" :fields="fields" v-if="userEvents && userEvents.length > 1"></b-table>
         </b-tab>
         <b-tab title="All Events">
           <b-table striped hover :items="allEvents" :fields="fields" v-if="allEvents.length"></b-table>
@@ -28,15 +28,13 @@ export default {
         { age: 21, first_name: "Larsen", last_name: "Shaw" },
         { age: 89, first_name: "Geneva", last_name: "Wilson" },
         { age: 38, first_name: "Jami", last_name: "Carney" }
-      ]
+      ],
+      userEvents: []
     };
   },
   computed: {
     allEvents: function() {
       return this.$store.state.events;
-    },
-    userEvents: function() {
-      return this.$store.state.user.events;
     }
   },
   methods: {
@@ -51,6 +49,10 @@ export default {
           this.allEvents.forEach(event => {
             event.address = `${event.address}, ${event.state}`;
           });
+          if (this.$store.state.loggedIn) {
+            console.log("user logged in");
+            this.getRSVPs();
+          }
         })
         .catch(error => {
           console.log(error);
@@ -108,6 +110,7 @@ export default {
         .then(result => {
           console.log(result);
           this.$store.commit("setUserEvents", result.data.events);
+          this.userEvents = this.$store.state.user.events;
           console.log(this.$store.state.user);
         })
         .catch(error => {
@@ -117,14 +120,12 @@ export default {
     }
   },
   async created() {
+    console.log("Events Created");
     await this.getEvents();
-    if (this.$store.state.loggedIn) {
-      console.log("user logged in");
-      this.getRSVPs();
-    }
   },
   async mounted() {
-    console.log(this.$store.state.events);
+    console.log("Events Mounted");
+    console.log(this.userEvents);
   }
 };
 </script>
