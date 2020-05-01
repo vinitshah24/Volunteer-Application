@@ -4,14 +4,14 @@
       <b-row>
         <b-col md="1">
           <b-button @click="click" class="mb-4" size="sm" variant="info">Toggle Heatmap</b-button>
-          <b-button @click="click" size="sm" variant="info">Toggle Events</b-button>
+          <b-button @click="toggleEvents" size="sm" variant="info">Toggle Events</b-button>
         </b-col>
         <b-col md="8">
           <div>
             <gmap ref="gmap" />
           </div>
         </b-col>
-        <b-col md="3"  style="max-height: 40rem; overflow-y: scroll">
+        <b-col md="3" style="max-height: 40rem; overflow-y: scroll">
           <b-card title="Upcoming Events" tag="article" class="mb-2">
             <b-container>
               <b-row v-for="event in $store.state.events" :key="event.id">
@@ -31,7 +31,7 @@
                       >{{ (-1)*dateCalc(event.date) }} Days Ago</small>
                     </div>
                   </template>
-                  
+
                   <p class="text-left mb-0">{{ event.address.split(',')[1] }}, {{ event.state }}</p>
                   <p class="text-left">{{ dateFormat(new Date(event.date)) }}</p>
 
@@ -39,41 +39,6 @@
                 </b-card>
               </b-row>
             </b-container>
-            <b-list-group>
-              <!-- <b-list-group-item class="mb-4" v-for="event in $store.state.events" :key="event.id">
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">{{ event.name }}</h5>
-                  <small v-if="dateCalc(event.date) >= 0">In {{ dateCalc(event.date) }} Days</small>
-                  <small v-if="dateCalc(event.date) < 0">{{ (-1)*dateCalc(event.date) }} Days Ago</small>
-                </div>
-                <p class="mb-1">{{ event.details }}</p>
-              </b-list-group-item>-->
-              <b-list-group-item href="#" active class="flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">List group item heading</h5>
-                  <small>3 days ago</small>
-                </div>
-
-                <p
-                  class="mb-1"
-                >Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-
-                <small>Donec id elit non mi porta.</small>
-              </b-list-group-item>
-
-              <b-list-group-item href="#" class="flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">List group item heading</h5>
-                  <small class="text-muted">3 days ago</small>
-                </div>
-
-                <p
-                  class="mb-1"
-                >Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-
-                <small class="text-muted">Donec id elit non mi porta.</small>
-              </b-list-group-item>
-            </b-list-group>
 
             <b-card-text></b-card-text>
           </b-card>
@@ -141,6 +106,9 @@ export default {
   methods: {
     click: function() {
       this.$refs.gmap.toggleHeat();
+    },
+    toggleEvents: function() {
+      this.$refs.gmap.toggleEvents();
     },
     dateCalc: function(date1) {
       let today = new Date();
