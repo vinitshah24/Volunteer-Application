@@ -1,0 +1,502 @@
+{
+  "37001": {
+    "region": "Alamance County, NC",
+    "lat": 36.0117388,
+    "lng": -79.4253776
+  },
+  "37003": {
+    "region": "Alexander County, NC",
+    "lat": 35.8974199,
+    "lng": -81.20781640000001
+  },
+  "37005": {
+    "region": "Alleghany County, NC",
+    "lat": 36.4940839,
+    "lng": -81.1196075
+  },
+  "37007": {
+    "region": "Anson County, NC",
+    "lat": 34.9054732,
+    "lng": -80.1875065
+  },
+  "37009": {
+    "region": "Ashe County, NC",
+    "lat": 36.4339674,
+    "lng": -81.47183869999999
+  },
+  "37011": {
+    "region": "Avery County, NC",
+    "lat": 36.1198414,
+    "lng": -81.909826
+  },
+  "37013": {
+    "region": "Beaufort County, NC",
+    "lat": 35.4613504,
+    "lng": -76.91820969999999
+  },
+  "37015": {
+    "region": "Bertie County, NC",
+    "lat": 36.0245185,
+    "lng": -76.964306
+  },
+  "37017": {
+    "region": "Bladen County, NC",
+    "lat": 34.5882404,
+    "lng": -78.5660852
+  },
+  "37019": {
+    "region": "Brunswick County, NC",
+    "lat": 34.0275398,
+    "lng": -78.2020387
+  },
+  "37021": {
+    "region": "Buncombe County, NC",
+    "lat": 35.59313770000001,
+    "lng": -82.4752757
+  },
+  "37023": {
+    "region": "Burke County, NC",
+    "lat": 35.7616931,
+    "lng": -81.73494199999999
+  },
+  "37025": {
+    "region": "Cabarrus County, NC",
+    "lat": 35.4168123,
+    "lng": -80.5882803
+  },
+  "37027": {
+    "region": "Caldwell County, NC",
+    "lat": 35.9227448,
+    "lng": -81.5596427
+  },
+  "37029": {
+    "region": "Camden County, NC",
+    "lat": 36.2600564,
+    "lng": -76.0391909
+  },
+  "37031": {
+    "region": "Carteret County, NC",
+    "lat": 34.9019263,
+    "lng": -76.5488232
+  },
+  "37033": {
+    "region": "Caswell County, NC",
+    "lat": 36.3860217,
+    "lng": -79.29021329999999
+  },
+  "37035": {
+    "region": "Catawba County, NC",
+    "lat": 35.6840748,
+    "lng": -81.2518833
+  },
+  "37037": {
+    "region": "Chatham County, NC",
+    "lat": 35.7211289,
+    "lng": -79.17806999999999
+  },
+  "37039": {
+    "region": "Cherokee County, NC",
+    "lat": 35.1134803,
+    "lng": -84.05902900000001
+  },
+  "37041": {
+    "region": "Chowan County, NC",
+    "lat": 36.1354131,
+    "lng": -76.6181655
+  },
+  "37043": {
+    "region": "Clay County, NC",
+    "lat": 35.0964003,
+    "lng": -83.7199136
+  },
+  "37045": {
+    "region": "Cleveland County, NC",
+    "lat": 35.361354,
+    "lng": -81.6035062
+  },
+  "37047": {
+    "region": "Columbus County, NC",
+    "lat": 34.2548658,
+    "lng": -78.74762079999999
+  },
+  "37049": {
+    "region": "Craven County, NC",
+    "lat": 35.0877672,
+    "lng": -77.0564464
+  },
+  "37051": {
+    "region": "Cumberland County, NC",
+    "lat": 34.9542604,
+    "lng": -78.74762079999999
+  },
+  "37053": {
+    "region": "Currituck County, NC",
+    "lat": 36.4189826,
+    "lng": -75.94632399999999
+  },
+  "37055": {
+    "region": "Dare County, NC",
+    "lat": 35.6549619,
+    "lng": -75.62080879999999
+  },
+  "37057": {
+    "region": "Davidson County, NC",
+    "lat": 35.7748479,
+    "lng": -80.1875065
+  },
+  "37059": {
+    "region": "Davie County, NC",
+    "lat": 35.9367033,
+    "lng": -80.5882803
+  },
+  "37061": {
+    "region": "Duplin County, NC",
+    "lat": 34.8840095,
+    "lng": -78.0195387
+  },
+  "37063": {
+    "region": "Durham County, NC",
+    "lat": 36.0221805,
+    "lng": -78.9031279
+  },
+  "37065": {
+    "region": "Edgecombe County, NC",
+    "lat": 35.8840053,
+    "lng": -77.6536125
+  },
+  "37067": {
+    "region": "Forsyth County, NC",
+    "lat": 36.1200003,
+    "lng": -80.1875065
+  },
+  "37069": {
+    "region": "Franklin County, NC",
+    "lat": 36.0741417,
+    "lng": -78.2426748
+  },
+  "37071": {
+    "region": "Gaston County, NC",
+    "lat": 35.2895651,
+    "lng": -81.20781640000001
+  },
+  "37073": {
+    "region": "Gates County, NC",
+    "lat": 36.4202077,
+    "lng": -76.6874701
+  },
+  "37075": {
+    "region": "Graham County, NC",
+    "lat": 35.3634623,
+    "lng": -83.804868
+  },
+  "37077": {
+    "region": "Granville County, NC",
+    "lat": 36.2799451,
+    "lng": -78.6114999
+  },
+  "37079": {
+    "region": "Greene County, NC",
+    "lat": 35.5013936,
+    "lng": -77.69941969999999
+  },
+  "37081": {
+    "region": "Guilford County, NC",
+    "lat": 36.0899873,
+    "lng": -79.8296743
+  },
+  "37083": {
+    "region": "Halifax County, NC",
+    "lat": 36.2646764,
+    "lng": -77.6077865
+  },
+  "37085": {
+    "region": "Harnett County, NC",
+    "lat": 35.35786480000001,
+    "lng": -78.8835548
+  },
+  "37087": {
+    "region": "Haywood County, NC",
+    "lat": 35.624394,
+    "lng": -82.99316069999999
+  },
+  "37089": {
+    "region": "Henderson County, NC",
+    "lat": 35.3725873,
+    "lng": -82.4319405
+  },
+  "37091": {
+    "region": "Hertford County, NC",
+    "lat": 36.3761772,
+    "lng": -77.0564464
+  },
+  "37093": {
+    "region": "Hoke County, NC",
+    "lat": 35.0432488,
+    "lng": -79.24511489999999
+  },
+  "37095": {
+    "region": "Hyde County, NC",
+    "lat": 35.3777712,
+    "lng": -76.17837390000001
+  },
+  "37097": {
+    "region": "Iredell County, NC",
+    "lat": 35.8310501,
+    "lng": -80.89865019999999
+  },
+  "37099": {
+    "region": "Jackson County, NC",
+    "lat": 35.3265409,
+    "lng": -83.12200740000002
+  },
+  "37101": {
+    "region": "Johnston County, NC",
+    "lat": 35.4403514,
+    "lng": -78.3842227
+  },
+  "37103": {
+    "region": "Jones County, NC",
+    "lat": 35.0306293,
+    "lng": -77.3324425
+  },
+  "37105": {
+    "region": "Lee County, NC",
+    "lat": 35.4693744,
+    "lng": -79.1548533
+  },
+  "37107": {
+    "region": "Lenoir County, NC",
+    "lat": 35.2326725,
+    "lng": -77.6077865
+  },
+  "37109": {
+    "region": "Lincoln County, NC",
+    "lat": 35.4637028,
+    "lng": -81.20781640000001
+  },
+  "37111": {
+    "region": "McDowell County, NC",
+    "lat": 35.6984405,
+    "lng": -82.08429009999999
+  },
+  "37113": {
+    "region": "Macon County, NC",
+    "lat": 35.1197519,
+    "lng": -83.33618799999999
+  },
+  "37115": {
+    "region": "Madison County, NC",
+    "lat": 35.8237518,
+    "lng": -82.6915429
+  },
+  "37117": {
+    "region": "Martin County, NC",
+    "lat": 35.8733053,
+    "lng": -77.1485163
+  },
+  "37119": {
+    "region": "Mecklenburg County, NC",
+    "lat": 35.2632655,
+    "lng": -80.8543847
+  },
+  "37121": {
+    "region": "Mitchell County, NC",
+    "lat": 36.0277763,
+    "lng": -82.1496049
+  },
+  "37123": {
+    "region": "Montgomery County, NC",
+    "lat": 35.3587922,
+    "lng": -79.87448359999999
+  },
+  "37125": {
+    "region": "Moore County, NC",
+    "lat": 35.3674493,
+    "lng": -79.4703885
+  },
+  "37127": {
+    "region": "Nash County, NC",
+    "lat": 35.9597948,
+    "lng": -77.973865
+  },
+  "37129": {
+    "region": "New Hanover County, NC",
+    "lat": 34.2154913,
+    "lng": -77.88245959999999
+  },
+  "37131": {
+    "region": "Northampton County, NC",
+    "lat": 36.4159635,
+    "lng": -77.4242972
+  },
+  "37133": {
+    "region": "Onslow County, NC",
+    "lat": 34.6540094,
+    "lng": -77.4701972
+  },
+  "37135": {
+    "region": "Orange County, NC",
+    "lat": 36.0263022,
+    "lng": -79.1096901
+  },
+  "37137": {
+    "region": "Pamlico County, NC",
+    "lat": 35.1337865,
+    "lng": -76.6874701
+  },
+  "37139": {
+    "region": "Pasquotank County, NC",
+    "lat": 36.2927068,
+    "lng": -76.317414
+  },
+  "37141": {
+    "region": "Pender County, NC",
+    "lat": 34.5170729,
+    "lng": -77.8367282
+  },
+  "37143": {
+    "region": "Perquimans County, NC",
+    "lat": 36.1329763,
+    "lng": -76.4100267
+  },
+  "37145": {
+    "region": "Person County, NC",
+    "lat": 36.3528221,
+    "lng": -78.9288242
+  },
+  "37147": {
+    "region": "Pitt County, NC",
+    "lat": 35.5589221,
+    "lng": -77.4242972
+  },
+  "37149": {
+    "region": "Polk County, NC",
+    "lat": 35.2686842,
+    "lng": -82.1713632
+  },
+  "37151": {
+    "region": "Randolph County, NC",
+    "lat": 35.7449531,
+    "lng": -79.8296743
+  },
+  "37153": {
+    "region": "Richmond County, NC",
+    "lat": 35.003045,
+    "lng": -79.7848422
+  },
+  "37155": {
+    "region": "Robeson County, NC",
+    "lat": 34.6383858,
+    "lng": -79.1096901
+  },
+  "37157": {
+    "region": "Rockingham County, NC",
+    "lat": 36.4335041,
+    "lng": -79.8296743
+  },
+  "37159": {
+    "region": "Rowan County, NC",
+    "lat": 35.6303455,
+    "lng": -80.54384499999999
+  },
+  "37161": {
+    "region": "Rutherford County, NC",
+    "lat": 35.4258737,
+    "lng": -81.909826
+  },
+  "37163": {
+    "region": "Sampson County, NC",
+    "lat": 34.9197548,
+    "lng": -78.3842227
+  },
+  "37165": {
+    "region": "Scotland County, NC",
+    "lat": 34.8451203,
+    "lng": -79.4703885
+  },
+  "37167": {
+    "region": "Stanly County, NC",
+    "lat": 35.30145540000001,
+    "lng": -80.23213129999999
+  },
+  "37169": {
+    "region": "Stokes County, NC",
+    "lat": 36.4244396,
+    "lng": -80.23213129999999
+  },
+  "37171": {
+    "region": "Surry County, NC",
+    "lat": 36.3743453,
+    "lng": -80.6770787
+  },
+  "37173": {
+    "region": "Swain County, NC",
+    "lat": 35.4328955,
+    "lng": -83.46435509999999
+  },
+  "37175": {
+    "region": "Transylvania County, NC",
+    "lat": 35.2190534,
+    "lng": -82.7778579
+  },
+  "37177": {
+    "region": "Tyrrell County, NC",
+    "lat": 35.8925537,
+    "lng": -76.17837390000001
+  },
+  "37179": {
+    "region": "Union County, NC",
+    "lat": 34.9338651,
+    "lng": -80.54384499999999
+  },
+  "37181": {
+    "region": "Vance County, NC",
+    "lat": 36.3479057,
+    "lng": -78.4297187
+  },
+  "37183": {
+    "region": "Wake County, NC",
+    "lat": 35.8031909,
+    "lng": -78.5660852
+  },
+  "37185": {
+    "region": "Warren County, NC",
+    "lat": 36.4352131,
+    "lng": -78.0195387
+  },
+  "37187": {
+    "region": "Washington County, NC",
+    "lat": 35.8120333,
+    "lng": -76.5950555
+  },
+  "37189": {
+    "region": "Watauga County, NC",
+    "lat": 36.1941825,
+    "lng": -81.73494199999999
+  },
+  "37191": {
+    "region": "Wayne County, NC",
+    "lat": 35.3565499,
+    "lng": -77.973865
+  },
+  "37193": {
+    "region": "Wilkes County, NC",
+    "lat": 36.202858,
+    "lng": -81.2518833
+  },
+  "37195": {
+    "region": "Wilson County, NC",
+    "lat": 35.6925497,
+    "lng": -77.88245959999999
+  },
+  "37197": {
+    "region": "Yadkin County, NC",
+    "lat": 36.2023597,
+    "lng": -80.6770787
+  },
+  "37199": {
+    "region": "Yancey County, NC",
+    "lat": 35.888897,
+    "lng": -82.34518899999999
+  }
+}

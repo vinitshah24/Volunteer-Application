@@ -1,0 +1,62 @@
+[
+  {
+    "charityName": "Classroom Central",
+    "rating": 4,
+    "category": "Education",
+    "cause": "Youth Education Programs and Services"
+  },
+  {
+    "charityName": "Center for Teaching Quality",
+    "rating": 3,
+    "category": "Education",
+    "cause": "Education Policy and Reform"
+  },
+  {
+    "charityName": "American Dance Festival",
+    "rating": 3,
+    "category": "Arts, Culture, Humanities",
+    "cause": "Performing Arts"
+  },
+  {
+    "charityName": "National MPS Society",
+    "rating": 4,
+    "category": "Health",
+    "cause": "Diseases, Disorders, and Disciplines"
+  },
+  {
+    "charityName": "The V Foundation",
+    "rating": 4,
+    "category": "Health",
+    "cause": "Diseases, Disorders, and Disciplines"
+  },
+  {
+    "charityName": "American Kennel Club Canine Health Foundation",
+    "rating": 4,
+    "category": "Animals",
+    "cause": "Animal Rights, Welfare, and Services"
+  },
+  {
+    "charityName": "Samaritan's Feet",
+    "rating": 3,
+    "category": "International",
+    "cause": "Development and Relief Services"
+  },
+  {
+    "charityName": "Rise Against Hunger",
+    "rating": 4,
+    "category": "International",
+    "cause": "Development and Relief Services"
+  },
+  {
+    "charityName": "National Inclusion Project",
+    "rating": 3,
+    "category": "Human Services",
+    "cause": "Social Services"
+  },
+  {
+    "charityName": "Hagar USA",
+    "rating": 2,
+    "category": "International",
+    "cause": "Development and Relief Services"
+  }
+]
