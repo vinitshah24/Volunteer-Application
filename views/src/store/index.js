@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     userAccessToken: null,
     userRefreshToken: null,
+    user: {},
     loggedIn: false,
     error: false,
     status: null,
@@ -36,6 +37,9 @@ export default new Vuex.Store({
     },
     setUsername(state, payload) {
       state.username = payload;
+    },
+    setUser(state, payload) {
+      state.user = payload;
     },
     setEvents(state, payload) {
       state.events = payload;

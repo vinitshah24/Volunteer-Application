@@ -199,7 +199,7 @@ export default {
       const rsvpURI = `http://127.0.0.1:5000/api/v1/rsvp`;
       console.log(this.$store.state.userAccessToken);
       const rsvpData = {
-        event_public_id: "85518821-757d-407d-b647-1a1151a59a1f"
+        event_public_id: "fa38b511-b4ab-4a77-9fb8-9ece4f788cd5"
       };
       const config = {
         headers: {

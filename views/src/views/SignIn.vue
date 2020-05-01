@@ -96,7 +96,7 @@ export default {
           password: e.password
         })
         .then(result => {
-          // console.log(result.status)
+          console.log(result);
           this.$store.commit("setAccess", result.data["access token"]);
           console.log(this.$store.state.userAccessToken);
           this.$store.commit("setRefresh", result.data["refresh token"]);
@@ -105,16 +105,29 @@ export default {
           this.$store.commit("setError", false);
           this.$store.commit("setStatus", result.status);
           this.$store.commit("setUsername", e.username);
-          console.log(this.$store.state.username)
-          this.$router.replace({
-            path: "/",
-            params: { status: "result.status" }
-          });
+          console.log(this.$store.state.username);
+        })
+        .then(() => {
+          this.updateUserInfo();
         })
         .catch(error => {
           this.$store.commit("setError", true);
           this.$store.commit("setStatus", error.response.status);
           this.loginError = this.$store.state.status;
+        });
+    },
+    updateUserInfo() {
+      const userURI = `http://127.0.0.1:5000/api/v1/user`;
+      this.$http
+        .get(userURI, {
+          headers: {
+            Authorization: `Bearer ${this.$store.state.userAccessToken}`
+          }
+        })
+        .then(result => {
+          this.$store.commit("setUser", result.data.user);
+          console.log(this.$store.state.user);
+          this.$router.go(-1);
         });
     }
   }
