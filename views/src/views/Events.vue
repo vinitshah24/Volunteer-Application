@@ -267,33 +267,28 @@ export default {
         })
         .finally(() => {});
     },
+    addRSVP(id) {
+      const rsvpURI = `http://127.0.0.1:5000/api/v1/rsvp`;
+      console.log(this.$store.state.userAccessToken);
+      const rsvpData = {
+        event_public_id: id
+      };
+      const config = {
+        headers: {
+          Authorization: `Bearer ${this.$store.state.userAccessToken}`
+        }
+      };
+      this.$http
+        .put(rsvpURI, rsvpData, config)
+        .then(result => {
+          console.log(result);
+          this.getEvents();
+        })
+        .catch(error => {
+          console.log(error.response);
+        });
+    },
     deleteRSVP(id) {
-      // const rsvpURI = `http://127.0.0.1:5000/api/v1/rsvp`;
-      // console.log(this.$store.state.userAccessToken);
-      // // const rsvpData = {
-      // //   body: {
-      // //     event_public_id: id
-      // //   }
-      // // };
-      // const config = {
-      //   data: id,
-
-      //   headers: {
-      //     Authorization: `Bearer ${this.$store.state.userAccessToken}`,
-      //     "Content-Type": "application/json"
-      //   }
-      // };
-      // console.log(this.$store.state.userAccessToken);
-      // this.$http
-      //   .delete(rsvpURI, config)
-      //   .then(data => {
-      //     // console.log(this.$store.state.userAccessToken);
-
-      //     console.log(data);
-      //   })
-      //   .catch(error => {
-      //     console.log(error.response);
-      //   });
       console.log(id);
       var myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
@@ -331,6 +326,7 @@ export default {
         this.deleteRSVP(id);
       } else {
         console.log("it is not true");
+        this.addRSVP(id);
       }
     },
     formatFields(arrs) {
