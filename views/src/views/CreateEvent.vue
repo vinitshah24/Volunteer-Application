@@ -189,6 +189,7 @@ export default {
       // alert(JSON.stringify(this.form));
       console.log(this.$root.$router.app.$children[0]);
       this.form.address = `${this.street}, ${this.city}`;
+    //   this.form.date = new Date(this.form.date);
       this.createEvent(this.form);
     },
     onReset(evt) {
@@ -207,7 +208,8 @@ export default {
     },
     createEvent(e) {
       const createEventURI = `http://127.0.0.1:5000/api/v1/event`;
-      console.log(e);
+      console.log(this.form.date);
+      console.log(e)
       console.log(this.$store.state.userAccessToken);
       //   const eventData = e;
       const config = {

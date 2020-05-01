@@ -44,6 +44,9 @@ export default new Vuex.Store({
     setUserEvents(state, payload) {
       state.user.events = payload;
     },
+    setUserEventsHash(state, payload) {
+      state.user.eventsHash = payload;
+    },
     setEvents(state, payload) {
       state.events = payload;
     },

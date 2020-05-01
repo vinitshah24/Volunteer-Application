@@ -13,6 +13,7 @@
                   type="text"
                   required
                   placeholder="Enter username"
+                  autofocus
                 ></b-form-input>
               </b-form-group>
 

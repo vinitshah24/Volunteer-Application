@@ -70,6 +70,27 @@ export default {
     toggleHeat() {
       this.heatmap.setMap(this.heatmap.getMap() ? null : this.gmap);
     }
+    // toggleEvents() {
+    //   // var eventString =
+    //   //   "<div><h4>Habitat For Humanity Event</h4>" +
+    //   //   "<p>Come help hang drywall in our new homebuild</p></div>";
+    //   let eventsMarkers = [];
+    //   this.$store.state.events.forEach(event => {
+    //     eventsMarkers.push(new this.google.maps.LatLng())
+    //   })
+
+    //   // var eventsMarkers = new this.google.maps.Marker({
+    //   //   position: new this.google.maps.LatLng(35.255146, -80.822402),
+    //   //   title: "Test"
+    //   // });
+    //   // var infoWindow = new this.google.maps.InfoWindow({
+    //   //   content: eventString
+    //   // });
+    //   // eventsMarkers.setMap(this.gmap);
+    //   // eventsMarkers.addListener("click", function() {
+    //   //   infoWindow.open(this.gmap, eventsMarkers);
+    //   // });
+    // }
   },
 
   async created() {
