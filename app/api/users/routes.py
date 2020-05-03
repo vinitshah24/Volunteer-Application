@@ -324,9 +324,6 @@ class TokenRefresh(Resource):
         # user has to sign-in using username and password [login]
         new_token = create_access_token(identity=current_user, fresh=False)
         return make_response(jsonify({'access token': new_token}), 200)
-# Currently if a user refreshes the token but the access token is still valid then
-# he can use both tokens and only newly created access token will be destroyed on logout
-# For future, add old access token to be added to blacklist so no once can use it anymore
 
 # Get all users
 api.add_resource(UserList, '/users')
