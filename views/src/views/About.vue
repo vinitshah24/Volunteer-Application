@@ -97,7 +97,7 @@
               header="Vinit Shah - Back-end Developer"
             ></b-card>
             <b-card
-              img-src="@/assets/images/matt.jpg"
+              img-src="@/assets/images/matt1.jpg"
               img-alt="Card image"
               img-top
               class="class-pic"
