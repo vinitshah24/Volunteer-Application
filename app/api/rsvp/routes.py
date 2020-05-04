@@ -127,7 +127,7 @@ class RsvpActions(Resource):
                         cursor.close()
                         conn.close()
                         if query_result == 1:
-                            return make_response(jsonify({'message': 'RSVP deleted successfully!'}), 401)
+                            return make_response(jsonify({'message': 'RSVP deleted successfully!'}), 200)
                         else:
                             return make_response(jsonify({'message': 'RSVP deletion failed!'}), 401)
                     else:

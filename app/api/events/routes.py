@@ -136,7 +136,7 @@ class EventActions(Resource):
                     if insert_status == 0:
                         return make_response(jsonify({'message': 'Event creation failed!'}), 401)
                     else:
-                        return make_response(jsonify({'message': 'Event was created successfully!'}), 200)
+                        return make_response(jsonify({'message': 'Event was created successfully!', 'public_id': public_id}), 200)
                 else:
                     return make_response(jsonify({'message': 'Required fields not found!'}), 401)
             except Exception as e:
