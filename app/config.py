@@ -1,5 +1,7 @@
 """ Configuration Variables """
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 DEBUG = os.getenv('DEBUG')
 PORT = 5000
