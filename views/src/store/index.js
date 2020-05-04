@@ -13,7 +13,11 @@ export default new Vuex.Store({
     status: null,
     username: null,
     events: [],
-    eventsMarkers: null,
+    eventsMarkers: {
+      arr: [],
+      showing: false,
+      infoWindows: []
+    },
     google: null,
     gmap: null,
     heatmap: null,

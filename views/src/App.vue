@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <div id="nav" v-bind:style="{marginBottom: $route.path === '/about' ? '0px' : '2rem'}">
       <top-header></top-header>
     </div>
     <router-view />
@@ -161,7 +161,6 @@ export default {
 #nav {
   padding: 0;
   padding-bottom: 3rem;
-  margin-bottom: 2rem;
   a {
     font-weight: bold;
     color: #2c3e50;

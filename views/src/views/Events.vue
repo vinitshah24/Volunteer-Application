@@ -20,11 +20,11 @@
                 @click="info(row.item, row.index, $event.target, 'allEvents')"
                 class="mr-1"
               >Details</b-button>
-              <b-button
+              <!-- <b-button
                 size="sm"
                 class="mr-1"
                 @click="row.toggleDetails"
-              >{{ row.detailsShowing ? 'Hide' : 'Show' }} Details</b-button>
+              >{{ row.detailsShowing ? 'Hide' : 'Show' }} Details</b-button> -->
               <b-button
                 v-if="$store.state.loggedIn && $store.state.user.eventsHash"
                 size="sm"
