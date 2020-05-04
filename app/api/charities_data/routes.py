@@ -12,6 +12,7 @@ api = Api(charities_data_blueprint)
 
 class APIList(Resource):
     def get(self):
+        print("CALLED")
         json_dir = os.path.join(os.path.dirname(__file__), 'data')
         file_path = os.path.join(json_dir, 'charities_data.json')
         # Check if file already exists or else call the api

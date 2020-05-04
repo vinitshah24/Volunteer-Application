@@ -90,7 +90,7 @@ class RsvpActions(Resource):
                     event_data['date'] = date.strftime("%x")
                     event_data['time'] = str(event['time'])
                     events_list.append(event_data)
-                return jsonify({'events': events_list})
+                    return jsonify({'events': events_list})
             else:
                 return make_response(jsonify({'message': 'Required fields not found!'}), 401)
         except Exception as e:
