@@ -22,7 +22,7 @@ mccabe==0.6.1
 numpy==1.18.3
 pandas==1.0.3
 pycodestyle==2.5.0
-PyJWT==1.7.1
+PyJWT==2.4.0
 pylint==2.4.4
 pylint-flask==0.6
 pylint-plugin-utils==0.6
